@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <screen name="main-decorator">
+        <section>
+            <actions>
+                <property-map resource="AdminUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+
+                <set field="layoutSettings.companyName" from-field="uiLabelMap.AdminCompanyName" global="true"/>
+                <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.AdminCompanySubtitle" global="true"/>
+
+                <set field="activeApp" value="admin" global="true"/>
+                <set field="applicationMenuName" value="MainAppBar" global="true"/>
+            </actions>
+            <widgets>
+            	<section>
+            		<widgets>
+            			<platform-specific><html><html-template location="component://trueinsight/webapp/admin/includes/header.ftl"/></html></platform-specific>
+                           <decorator-section-include name="body"/>
+                    	<platform-specific><html><html-template location="component://trueinsight/webapp/admin/includes/footer.ftl"/></html></platform-specific>
+            		</widgets>
+            	</section>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="AdminCommonDecorator">
+        <section>
+            <actions>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <!-- condition>
+                                <if-has-permission permission="ADMIN" action="_VIEW"/>
+                            </condition-->
+                            <widgets>
+                            	<container id="wrapper">
+                            		<include-screen name="leftmenu"/>
+                            		<!-- include-screen name="messages"/-->
+                                	<decorator-section-include name="body"/>
+                                </container>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.AdminViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="leftmenu">
+	    <section>
+	    	<widgets>
+	    		<platform-specific>
+					<html>
+						<html-template location="component://trueinsight/webapp/admin/includes/left.ftl"/>
+					</html>
+				</platform-specific>
+	    	</widgets>
+	    </section>
+    </screen>
+    
+    <screen name="topmenu">
+	    <section>
+	    	<widgets>
+	    		<platform-specific>
+					<html>
+						<html-template location="component://trueinsight/webapp/admin/includes/top.ftl"/>
+					</html>
+				</platform-specific>
+	    	</widgets>
+	    </section>
+    </screen>
+    
+    <screen name="messages">
+        <section>
+            <widgets>
+				<platform-specific>
+					<html>
+						<html-template location="component://trueinsight/webapp/admin/includes/messages.ftl"/>
+					</html>
+				</platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="uploadproductimage">
+        <section>
+            <actions>
+                <!-- script location="component://admin/webapp/admin/WEB-INF/actions/product/uploadimage.groovy"/-->
+            </actions>
+            <widgets>
+				<platform-specific>
+					<html>
+						<html-template location="component://admin/webapp/admin/body/product/uploadproductimage.ftl"/>
+					</html>
+				</platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="studentlist">
+        <section>
+            <actions>
+                <script location="component://trueinsight/webapp/admin/WEB-INF/actions/students/studentslist.groovy"/>
+            </actions>
+            <widgets>
+				<platform-specific>
+					<html>
+						<html-template location="component://trueinsight/webapp/admin/body/students/studentslist.ftl"/>
+					</html>
+				</platform-specific>
+            </widgets>
+        </section>
+    </screen>
+</screens>

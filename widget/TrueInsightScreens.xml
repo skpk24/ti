@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <screen name="main">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<platform-specific>
+                    		<html>
+                    			<html-template location="component://trueinsight/webapp/trueinsight/includes/body/main.ftl"/>
+                    		</html>
+                    	</platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="grades">
+        <section>
+            <actions>
+                <set field="headerItem" value="grades"/><!-- this highlights the selected menu-item with name "main" -->
+                <script location="component://trueinsight/webapp/trueinsight/WEB-INF/actions/body/grades.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    <section>
+                    	<condition>
+							<if-has-permission permission="TI" action="_TEACHER" />
+						</condition>
+						<widgets>
+							<platform-specific>
+	                    		<html>
+	                    			<html-template location="component://trueinsight/webapp/trueinsight/includes/body/grades.ftl"/>
+	                    		</html>
+	                    	</platform-specific>
+						</widgets>
+                    </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="categories">
+        <section>
+            <actions>
+                <set field="headerItem" value="categories"/><!-- this highlights the selected menu-item with name "main" -->
+                <script location="component://trueinsight/webapp/trueinsight/WEB-INF/actions/body/categories.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<section>
+	                    	<condition>
+								<if-has-permission permission="TI" action="_TEACHER" />
+							</condition>
+							<widgets>
+								<platform-specific>
+		                    		<html>
+		                    			<html-template location="component://trueinsight/webapp/trueinsight/includes/body/categories.ftl"/>
+		                    		</html>
+		                    	</platform-specific>
+							</widgets>
+	                    </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="students">
+        <section>
+            <actions>
+                <set field="headerItem" value="students"/><!-- this highlights the selected menu-item with name "main" -->
+                <script location="component://trueinsight/webapp/trueinsight/WEB-INF/actions/body/students.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<section>
+	                    	<condition>
+								<if-has-permission permission="TI" action="_TEACHER" />
+							</condition>
+							<widgets>
+								<platform-specific>
+		                    		<html>
+		                    			<html-template location="component://trueinsight/webapp/trueinsight/includes/body/students.ftl"/>
+		                    		</html>
+		                    	</platform-specific>
+							</widgets>
+	                    </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="questions">
+        <section>
+            <actions>
+                <set field="headerItem" value="questions"/><!-- this highlights the selected menu-item with name "main" -->
+                <script location="component://trueinsight/webapp/trueinsight/WEB-INF/actions/body/questions.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<section>
+	                    	<condition>
+								<if-has-permission permission="TI" action="_TEACHER" />
+							</condition>
+							<widgets>
+								<platform-specific>
+		                    		<html>
+		                    			<html-template location="component://trueinsight/webapp/trueinsight/includes/body/questions.ftl"/>
+		                    		</html>
+		                    	</platform-specific>
+							</widgets>
+	                    </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+	<screen name="aboutus">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<platform-specific>
+                    		<html>
+                    			<html-template location="component://trueinsight/webapp/trueinsight/inner/aboutus.ftl"/>
+                    		</html>
+                    	</platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="contactus">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<platform-specific>
+                    		<html>
+                    			<html-template location="component://trueinsight/webapp/trueinsight/inner/contactus.ftl"/>
+                    		</html>
+                    	</platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="support">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<platform-specific>
+                    		<html>
+                    			<html-template location="component://trueinsight/webapp/trueinsight/inner/support.ftl"/>
+                    		</html>
+                    	</platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="knowmore">
+        <section>
+            <actions>
+                <set field="headerItem" value="knowmore"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<platform-specific>
+                    		<html>
+                    			<html-template location="component://trueinsight/webapp/trueinsight/inner/knowmore.ftl"/>
+                    		</html>
+                    	</platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="report">
+        <section>
+            <actions>
+                <set field="headerItem" value="knowmore"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<platform-specific>
+                    		<html>
+                    			<html-template location="component://trueinsight/webapp/trueinsight/includes/body/report.ftl"/>
+                    		</html>
+                    	</platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="report.pdf">
+        <section>
+            <actions>
+                <script location="component://trueinsight/webapp/trueinsight/WEB-INF/actions/body/report.groovy"/>
+            </actions>
+            <widgets>
+            	<platform-specific>
+                   	<xsl-fo><html-template location="component://trueinsight/webapp/trueinsight/includes/body/report.fo.ftl"/></xsl-fo>
+               	</platform-specific>
+            </widgets>
+        </section>
+    </screen>
+</screens>

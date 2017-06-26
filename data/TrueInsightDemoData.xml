@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+	<PartyRelationshipType description="" hasTable="N" parentTypeId="" partyRelationshipName="Grade" partyRelationshipTypeId="GRADE" roleTypeIdValidFrom="" roleTypeIdValidTo=""/>
+	<PartyRelationshipType description="" hasTable="N" parentTypeId="" partyRelationshipName="Section" partyRelationshipTypeId="SECTION" roleTypeIdValidFrom="" roleTypeIdValidTo=""/>
+	<PartyRelationshipType description="" hasTable="N" parentTypeId="" partyRelationshipName="Teacher" partyRelationshipTypeId="TEACHER" roleTypeIdValidFrom="" roleTypeIdValidTo=""/>
+	<PartyRelationshipType description="" hasTable="N" parentTypeId="" partyRelationshipName="Student" partyRelationshipTypeId="STUDENT" roleTypeIdValidFrom="" roleTypeIdValidTo=""/>
+	<PartyRelationshipType description="" hasTable="N" parentTypeId="" partyRelationshipName="Center" partyRelationshipTypeId="CENTER" roleTypeIdValidFrom="" roleTypeIdValidTo=""/>
+	<!-- ORGANIZATION_ROLE -->
+	<RoleType roleTypeId="TEACHER" description="Teacher" hasTable="N"/>
+	<RoleType roleTypeId="STUDENT" description="Student" hasTable="N"/>
+	<RoleType roleTypeId="GRADE" description="Grade" hasTable="N"/>
+	<RoleType roleTypeId="SECTION" description="Section" hasTable="N"/>
+	<RoleType roleTypeId="CENTER" description="Center" hasTable="N"/>
+	
+	
+	<SecurityGroup groupId="TEACHER" description="Teacher level permissions"/>
+	<SecurityGroup groupId="PARENT" description="Parent level permissions"/>
+	
+	<SecurityPermission description="View operations in the TrueInsight Component." permissionId="TI_PARENT"/>
+    <SecurityPermission description="Create operations in the TrueInsight Component." permissionId="TI_TEACHER"/>
+    
+    <SecurityGroupPermission groupId="TEACHER" permissionId="TI_TEACHER"/>
+    <SecurityGroupPermission groupId="PARENT" permissionId="TI_PARENT"/>
+</entity-engine-xml>

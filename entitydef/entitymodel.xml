@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entitymodel.xsd">
+    <!-- ========================================================= -->
+    <!-- ======================== Defaults ======================= -->
+    <!-- ========================================================= -->
+    <title>Entity of TrueInsight Component</title>
+    <description>None</description>
+    <copyright></copyright>
+    <version></version>
+    
+    <extend-entity entity-name="Party">
+    	<field name="orgId" type="id-ne"/>
+    </extend-entity>
+    
+    <extend-entity entity-name="Person">
+    	<field name="fatherMobelNo" type="short-varchar"/>
+    	<field name="email" type="short-varchar"/>
+    </extend-entity>
+    
+    <entity entity-name="PartySurvey" package-name="org.ofbiz.party">
+    	<field name="partyId" type="id-ne"></field>
+        <field name="surveyId" type="id-ne"></field>
+        <field name="fromDate" type="date-time"></field>
+        <field name="thruDate" type="date-time"></field>
+        <field name="comments" type="comment"></field>
+        <field name="sequenceNum" type="numeric"></field>
+        <prim-key field="partyId"/>
+        <prim-key field="surveyId"/>
+        <prim-key field="fromDate"/>
+    </entity>
+    
+    <extend-entity entity-name="SurveyQuestionCategory">
+    	<field name="surveyId" type="id-ne"/>
+    	<relation type="one" fk-name="SRVYQUECAT_SRVY" rel-entity-name="Survey">
+            <key-map field-name="surveyId"/>
+        </relation>
+    </extend-entity>
+    
+
+</entitymodel>

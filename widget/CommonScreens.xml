@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <screen name="main-decorator">
+        <section>
+            <actions>
+                <property-map resource="TrueInsightUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+
+                <set field="layoutSettings.companyName" from-field="uiLabelMap.TrueInsightCompanyName" global="true"/>
+                <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.TrueInsightCompanySubtitle" global="true"/>
+
+                <set field="activeApp" value="trueinsight" global="true"/>
+                <set field="applicationTitle" value="${uiLabelMap.TrueInsightApplication}" global="true"/>
+
+                <!-- Company setting -->
+                <!-- script location="component://backend/webapp/backend/WEB-INF/actions/changeOrgPartyId.groovy"/--><!-- to see ofbizsetup needs to be displayed -->
+                
+                <!-- set field="defaultOrganizationPartyId" value="${userPreferences.ORGANIZATION_PARTY}" global="true"/>
+                <property-to-field resource="general" property="currency.uom.id.default" field="defaultCurrencyUomId"/>
+                <entity-one entity-name="PartyAcctgPrefAndGroup" value-field="orgParty">
+                    <field-map field-name="partyId" from-field="defaultOrganizationPartyId"/>
+                    <field-map field-name="roleTypeId" value="INTERNAL_ORGANIZATIO"/>
+                </entity-one>
+                <entity-one value-field="orgPartyLogoMap" entity-name="PartyGroup">
+                    <field-map field-name="partyId" from-field="defaultOrganizationPartyId"/>
+                </entity-one-->
+            </actions>
+            <widgets>
+               <section>
+                  <widgets>
+                     <platform-specific><html><html-template location="component://trueinsight/webapp/trueinsight/includes/header.ftl"/></html></platform-specific>
+                     <!-- render header -->
+                           <!-- render messages -->
+<!--                            <platform-specific><html><html-template location="component://common/webcommon/includes/messages.ftl"/></html></platform-specific> -->
+                           <decorator-section-include name="body"/>
+                    <!-- render footer -->
+                    <platform-specific><html><html-template location="component://trueinsight/webapp/trueinsight/includes/footer.ftl"/></html></platform-specific>
+                  </widgets>
+               </section>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="TrueInsightCommonDecorator">
+        <section>
+            <actions>
+            	<script location="component://trueinsight/webapp/trueinsight/WEB-INF/actions/common/common.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <decorator-section-include name="body"/>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="login">
+        <section>
+            <actions>
+                <set field="titleProperty" value="TrueInsightCompanyName" />
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <script location="component://trueinsight/webapp/trueinsight/WEB-INF/actions/login/getbranches.groovy"/>
+            </actions>
+            <widgets>
+            	<platform-specific><html><html-template location="component://trueinsight/webapp/trueinsight/includes/header.ftl"/></html></platform-specific>
+               	<!-- platform-specific><html><html-template location="component://backend/webapp/backend/includes/messages.ftl"/></html></platform-specific-->
+               	<platform-specific>
+                   <html><html-template location="component://trueinsight/webapp/trueinsight/inner/login.ftl"/></html>
+               	</platform-specific>
+               	<platform-specific><html><html-template location="component://trueinsight/webapp/trueinsight/includes/footer.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="breadcrumb">
+        <section>
+            <actions>
+                <!-- script location="component://trueinsight/webapp/trueinsight/WEB-INF/actions/login/getbranches.groovy"/-->
+            </actions>
+            <widgets>
+               	<platform-specific>
+                   <html><html-template location="component://trueinsight/webapp/trueinsight/includes/body/breadcrumb.ftl"/></html>
+               	</platform-specific>
+            </widgets>
+        </section>
+    </screen>
+</screens>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site-conf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/site-conf.xsd">
+    <!-- The controller elements that are common to all OFBiz components
+         can be found in the following xml file. A component can override the
+         elements found in the common-controller.xml file. -->
+    <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
+
+    <description>TrueInsight Component Site Configuration File</description>
+
+    <!-- Events to run on every request before security (chains exempt) -->
+    <!--
+    <preprocessor>
+    </preprocessor>
+    -->
+    <!-- Events to run on every request after all other processing (chains exempt) -->
+    <!--
+    <postprocessor>
+        <event name="test" type="java" path="org.ofbiz.webapp.event.TestEvent" invoke="test"/>
+    </postprocessor>
+    -->
+
+    <!-- Request Mappings -->
+    <request-map uri="login">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.ofbiz.trueinsight.login.LoginUtil" invoke="login"/>
+        <response name="success" type="view" value="main"/>
+        <response name="requirePasswordChange" type="view" value="requirePasswordChange"/>
+        <response name="error" type="view" value="login"/>
+    </request-map>
+    
+    <!-- request-map uri="login">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.ofbiz.webapp.control.LoginWorker" invoke="login"/>
+        <response name="success" type="view" value="main"/>
+        <response name="requirePasswordChange" type="view" value="requirePasswordChange"/>
+        <response name="error" type="view" value="login"/>
+    </request-map-->
+    
+    <request-map uri="changePassword">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="changePwd"/>
+        <response name="error" type="view" value="changePwd"/>
+    </request-map>
+    
+    <request-map uri="changepwd">
+        <security https="true" auth="true"/>
+        <event type="service" path="" invoke="updatePassword"/>
+        <response name="success" type="request-redirect-noparam" value="changed"/>
+        <response name="error" type="view" value="changePwd"/>
+    </request-map>
+    
+    <request-map uri="changed">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="changePwd"/>
+        <response name="error" type="view" value="changePwd"/>
+    </request-map>
+    
+    <request-map uri="main">
+    	<security https="true" auth="true"/>
+    	<response name="success" type="view" value="main"/>
+    </request-map>
+    
+    <request-map uri="students">
+    	<security https="true" auth="true"/>
+    	<response name="success" type="view" value="students"/>
+    </request-map>
+    
+    <request-map uri="uploadStudents">
+    	<security https="true" auth="true"/>
+    	<response name="success" type="view" value="uploadStudents"/>
+    </request-map>
+    
+    <request-map uri="uploadBulkStudents">
+		<security https="true" auth="true" />
+		<event type="java" path="org.ofbiz.util.AdminUtil" invoke="uploadFile" />
+		<response name="success" type="request-redirect" value="createUpdateStudent"/>
+		<response name="error" type="view" value="uploadStudents" />
+	</request-map>
+	
+	<request-map uri="createUpdateStudent">
+		<security https="true" auth="true" />
+		<event type="java" path="org.ofbiz.admin.StudentEvent" invoke="createUpdateStudent" />
+		<response name="success" type="request-redirect" value="uploadStudents" />
+		<response name="error" type="view" value="uploadStudents" />
+	</request-map>
+	
+	<request-map uri="teachers">
+    	<security https="true" auth="true"/>
+    	<response name="success" type="view" value="teachers"/>
+    </request-map>
+    
+    <request-map uri="uploadTeachers">
+    	<security https="true" auth="true"/>
+    	<response name="success" type="view" value="uploadTeachers"/>
+    </request-map>
+    
+    <request-map uri="uploadBulkTeachers">
+		<security https="true" auth="true" />
+		<event type="java" path="org.ofbiz.util.AdminUtil" invoke="uploadFile" />
+		<response name="success" type="request-redirect" value="createUpdateTeacher"/>
+		<response name="error" type="view" value="uploadTeachers" />
+	</request-map>
+	
+	<request-map uri="createUpdateTeacher">
+		<security https="true" auth="true" />
+		<event type="java" path="org.ofbiz.admin.TeacherEvent" invoke="createUpdateTeacher" />
+		<response name="success" type="request-redirect" value="uploadTeachers" />
+		<response name="error" type="view" value="uploadTeachers" />
+	</request-map>
+	
+	
+	<request-map uri="school">
+    	<security https="true" auth="true"/>
+    	<response name="success" type="view" value="school"/>
+    </request-map>
+    
+    <request-map uri="uploadSchool">
+    	<security https="true" auth="true"/>
+    	<response name="success" type="view" value="uploadSchool"/>
+    </request-map>
+    
+    <request-map uri="uploadBulkSchool">
+		<security https="true" auth="true" />
+		<event type="java" path="org.ofbiz.util.AdminUtil" invoke="uploadFile" />
+		<response name="success" type="request-redirect" value="createUpdateSchool"/>
+		<response name="error" type="view" value="uploadSchool" />
+	</request-map>
+	
+	<request-map uri="createUpdateSchool">
+		<security https="true" auth="true" />
+		<event type="java" path="org.ofbiz.util.AdminUtil" invoke="createUpdateOrg" />
+		<response name="success" type="request-redirect" value="uploadSchool" />
+		<response name="error" type="view" value="uploadSchool" />
+	</request-map>
+	
+	<request-map uri="questionbank">
+		<security https="true" auth="true" />
+		<response name="success" type="view" value="questionbank"/>
+	</request-map>
+    
+    
+    <!-- View Mappings -->
+    <view-map name="login" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#login"/>
+    <view-map name="changePwd" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#changePwd"/>
+    <view-map name="main" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#main"/>
+    
+    <view-map name="students" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#students"/>
+    <view-map name="uploadStudents" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#uploadStudents"/>
+    
+    <view-map name="school" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#school"/>
+    <view-map name="uploadSchool" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#uploadSchool"/>
+    
+    <view-map name="teachers" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#teachers"/>
+    <view-map name="uploadTeachers" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#uploadTeachers"/>
+    
+    <view-map name="questionbank" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#questionbank"/>
+    
+</site-conf>

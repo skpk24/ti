@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+	<form name="createSurveyGrades" type="single" target="createSurveyGrades" title=""
+        header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="createSurveyGrades"/>
+        <field name="surveyId" required-field="true" tooltip="No Space only Hyphen(-) is alowed"></field>
+        <field name="comments"><ignored/></field>
+        <field name="submitCaption"><ignored/></field>
+        <field name="responseService"><ignored/></field>
+        <field name="isAnonymous"><hidden value="N"/></field>
+        <field name="allowMultiple"><hidden value="N"/></field>
+        <field name="allowUpdate"><hidden value="N"/></field>
+        <field name="acroFormContentId"><ignored/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonSave}" widget-style="smallSubmit"><submit button-type="text-link"/></field>
+    </form>
+
+</forms>
