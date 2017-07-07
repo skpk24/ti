@@ -8,13 +8,13 @@
                             <p class="footer-link">Get in touch</p>
                                 <ul class="list-inline">
                                     <li>
-                                    <a href="#"><i class="fa fa-youtube fa-fw fa-2x"></i></a>
+                                    <a target="_blank" href="https://www.youtube.com/channel/UCBDl9RUNDt9ZPSWjW9wqfrw"><i class="fa fa-youtube fa-fw fa-2x"></i></a>
                                     </li>
                                     <li>
-                                    <a target="_blank" href="https://www.facebook.com/TrueInsight-1422753721117080/"><i class="fa fa-facebook fa-fw fa-2x"></i></a>
+                                    <a target="_blank" href="https://www.facebook.com/insightfulinsights/"><i class="fa fa-facebook fa-fw fa-2x"></i></a>
                                     </li>
                                     <li>
-                                    <a href="#"><i class="fa fa-linkedin fa-fw fa-2x"></i></a>
+                                    <a target="_blank" href="https://www.linkedin.com/company/insightfulinsightsprivatelimited"><i class="fa fa-linkedin fa-fw fa-2x"></i></a>
                                     </li>
                                     <!--li>
                                     <a href="#"><i class="fa fa-dribbble fa-fw fa-2x"></i></a>
@@ -26,7 +26,7 @@
                     </div>
                         
                     <div class="col-md-5 col-sm-8 footer-link">
-                        	<a href="#">Terms & Conditions</a> | <a href="#">Private Policy</a> | <a href="#">FAQs</a> | <a href="<@ofbizUrl>contact-us.html</@ofbizUrl>">Contact Us</a> | <a href="#">Blog</a>
+                        	<a href="#">Terms & Conditions</a> | <a href="#">Private Policy</a> | <a href="#">Blog</a>
                     </div>
                         
                     <div class="col-md-3 col-sm-9 footer-link">

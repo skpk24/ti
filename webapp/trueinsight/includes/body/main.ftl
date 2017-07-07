@@ -11,7 +11,7 @@
 					<div class="text-vertical-center-sub">Thriving to create an environment of good behaviour, <br />morality and mannerisms.</div>
 				</li>
 				<li>
-					<div class="text-vertical-center-sub">Build a world where competition is beyond “just” ranks. <br />Add value to a more meaningful life.</div>
+					<div class="text-vertical-center-sub">Build a world where competition is beyond "just" ranks. <br />Add value to a more meaningful life.</div>
 				</li>
 			</ul>
             <br>
@@ -100,7 +100,7 @@
 	                        </div>
 	                    </div>
 	                </div>
-                    <p class="lead">We believe that Students can move beyond just ranks, grades and academic excellence and, can pursue more cultivating attitudes, behaviour and values. In accomplishing this, our teachers must be able to access a user friendly tracking tool to reward and shape students’ behaviour. Thereby, creating a platform to ameliorate behaviour. </p>
+                    <p class="lead">We believe that Students can move beyond just ranks, grades and academic excellence and, can pursue more cultivating attitudes, behaviour and values. In accomplishing this, our teachers must be able to access a user friendly tracking tool to reward and shape students' behaviour. Thereby, creating a platform to ameliorate behaviour. </p>
                    
                     <a href="<@ofbizUrl>knowmore.html</@ofbizUrl>" class="btn btn-more btn-white">Know More</a>
                     <!-- /.row (nested) -->
