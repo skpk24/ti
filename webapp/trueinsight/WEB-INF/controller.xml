@@ -100,12 +100,24 @@
     	<response name="success" type="view" value="report.pdf"/>
     </request-map>
     
+    <request-map uri="terms-conditions.html">
+    	<security https="true" auth="false"/>
+    	<response name="success" type="view" value="terms-conditions"/>
+    </request-map>
+    
+    <request-map uri="privacy-refund-policy.html">
+    	<security https="true" auth="false"/>
+    	<response name="success" type="view" value="privacy-refund-policy"/>
+    </request-map>
+    
     
     <!-- View Mappings -->
     <view-map name="aboutus" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#aboutus"/>
     <view-map name="contactus" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#contactus"/>
     <view-map name="support" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#support"/>
     <view-map name="knowmore" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#knowmore"/>
+    <view-map name="terms-conditions" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#terms-conditions"/>
+    <view-map name="privacy-refund-policy" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#privacy-refund-policy"/>
     
     
     <view-map name="main" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#main"/>

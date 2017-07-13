@@ -3,7 +3,7 @@
   	<fo:layout-master-set>
 	    <fo:simple-page-master master-name="letter-portrait" page-height="11in" page-width="8.5in"
 	        margin-top="0in" margin-bottom="0.5in" margin-left="0.5in" margin-right="0.5in">
-	      <fo:region-body margin-top="0.75in" margin-bottom="0in"/>
+	      <fo:region-body margin-top="0.75in" margin-bottom="0.4in"/>
 	      <fo:region-before precedence="true" extent="1.5in"/>
 	      <fo:region-after precedence="true" extent="0.5in"/>
 	      </fo:simple-page-master>
@@ -64,13 +64,58 @@
 					</fo:table-row>
 			  		<fo:table-row>
 			            <fo:table-cell padding="5pt">
-							<fo:block text-align="justify">Behavioural issues in childhood are barely noticed or generally ignored.  Even when noticed, it is disregarded with the thought that as children grow, they will acquire good behaviour in some way or the other. But, overwhelming evidence shows that not dealing with behavioural issues can potentially affect children’s psychological health, and interfere with their personal and academic lives. </fo:block>
+							<fo:block text-align="justify">As rightly said by J. Fraser Mustard , "The early years of human development establish the 
+							basic architecture and function of the brain".</fo:block>
 						</fo:table-cell>
 			       	</fo:table-row>
 			       	
 			       	<fo:table-row padding="5pt 0pt 0pt 0pt">
 			            <fo:table-cell padding="5pt">
-							<fo:block text-align="justify">Undoubtedly, teachers, parents and professionals working with children can mentor such issues formally and informally. But, it is definitely not the same as professionals or experts who exactly know the kind of mentorship required, who can help and guide in addressing these issues with an interdisciplinary approach.  </fo:block>
+							<fo:block text-align="justify">Children begin to learn things from a very early age through various means. They start 
+							learning about the world around them during the prenatal, perinatal (immediately before and 
+							after birth) and postnatal period. Neurological studies and researches shows that the early 
+							years play a key role in children's brain development. Hence, the interaction that takes place 
+							between the developing brain and the environment is a continuous driving force for the 
+							developmental process.  Children's early experiences, the bonds they form with their primary 
+							care givers and adults, and their first/initial learning experiences deeply affect their present 
+							and future physical, cognitive, language, emotional and social development. These 
+							developments of the young minds is directly proportional to their overall development and 
+							the adults they grow up to be. Therefore, nurturing children in appropriate ways while 
+							fostering proper growth and development is the need and investment required to maximize 
+							and ensure the children's future success and well – being.</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+			       	
+			       	<fo:table-row padding="5pt 0pt 0pt 0pt">
+			            <fo:table-cell padding="5pt">
+							<fo:block text-align="justify">Learning and development starts at the infant level, long before formal education begins and 
+							continues throughout our lives. Thus nurture in the early years of learning and development 
+							has major effects on learning in school, and overall growth – physical and mental – 
+							throughout the lifecycle. Children's growth and development is beyond just physical, it also 
+							includes many other essential areas of development such as motor, cognition, language, 
+							emotion, social, sensation and perception. These are the important developmental milestones 
+							that every child achieves at every stage of their young life.</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+			       	
+			       	<fo:table-row padding="5pt 0pt 0pt 0pt">
+			            <fo:table-cell padding="5pt">
+							<fo:block text-align="justify">Developmental milestones are skillsets or behaviour that illustrates a child's growth in 
+							particular areas of development. They act as checkpoints in a child's development to 
+							determine what an average child is able to do at a particular age. Knowing the developmental 
+							milestones for different ages helps parents, teachers, and healthcare professionals understand 
+							normal child development and also aids in identifying potential problems with delayed 
+							development.</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+			       	
+			       	<fo:table-row padding="5pt 0pt 0pt 0pt">
+			            <fo:table-cell padding="5pt">
+							<fo:block text-align="justify">This report gives us a comprehensive outlook and understanding as to where your child's 
+							growth and development is progressing in accordance with his or her age. It will help to 
+							track, gain crucial insights and have an understanding of the behaviour patterns and overall 
+							development of your child through the childhood developmental milestones on the various 
+							areas of development.</fo:block>
 						</fo:table-cell>
 			       	</fo:table-row>
 			       	
@@ -81,7 +126,7 @@
 					</fo:table-row>
 					<fo:table-row padding="5pt 0pt 0pt 0pt">
 			            <fo:table-cell padding="5pt">
-							<fo:block text-align="justify">The founder of True Insight, along with a team of dedicated psychologists and industry experts have come together to ensure the creation of an accessible and user-friendly  scientific application to positively impact the lives of each individual, bring a change for the better, and develop  skills, good behaviour and mannerisms which help in promoting children’s growth and personality.</fo:block>
+							<fo:block text-align="justify">The founder of True Insight, along with a team of dedicated psychologists and industry experts have come together to ensure the creation of an accessible and user-friendly  scientific application to positively impact the lives of each individual, bring a change for the better, and develop  skills, good behaviour and mannerisms which help in promoting children's growth and personality.</fo:block>
 						</fo:table-cell>
 			       	</fo:table-row>
 			       	<fo:table-row font-weight="bold">
@@ -114,7 +159,7 @@
 			       	
 			       	<fo:table-row font-weight="bold">
 						<fo:table-cell padding="15pt 5pt 5pt 5pt">
-							<fo:block text-align="left">Description of child’s milestone development.</fo:block>
+							<fo:block text-align="left">Description of child's milestone development.</fo:block>
 						</fo:table-cell>
 					</fo:table-row>
 					<fo:table-row font-weight="bold">
@@ -139,11 +184,20 @@
 					
 					<fo:table-row>
 			            <fo:table-cell padding="5pt">
+							<fo:block text-align="justify">The scores in this areas are significantly higher than above average. It consist of the below 
+							mentioned areas which has achieved complete development. These skills or abilities which 
+							falls under this category may have come naturally to your child. A healthy and conducive 
+							environment will provide the child with opportunities to practise, enhance and utilise these 
+							skills for a wholesome growth and development.</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+			       	
+			       	<fo:table-row>
+			            <fo:table-cell padding="1pt 5pt 5pt 5pt">
 							<fo:block text-align="justify">The child shows a clear strength with a complete development of the following milestones -&#x000A;</fo:block>
 							<fo:block text-align="left">Gross motor skills, Memory and Taste.</fo:block>
 						</fo:table-cell>
 			       	</fo:table-row>
-			       	
 			       	
 			       	<fo:table-row font-weight="bold">
 						<fo:table-cell padding="15pt 5pt 5pt 5pt">
@@ -154,11 +208,18 @@
 					<fo:table-row>
 			            <fo:table-cell padding="5pt">
 							<fo:block text-align="justify">
-								The child shows strength in the development of the following milestones-
+								The scores in these areas are in above average range. Most of the time, your child shows skill 
+								or good ability in the below mentioned areas, though not in all circumstances or with all 
+								people. With just a little more awareness, effort and a nurturing environment he/she can 
+								enhance the effectiveness in each of these areas for a healthy growth and development.
 							</fo:block>
-							<fo:block text-align="left">
-								Fine Motor, Vision, Touch and Smell.
-							</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+			       	
+			       	<fo:table-row>
+			            <fo:table-cell padding="1pt 5pt 5pt 5pt">
+							<fo:block text-align="justify">The child shows strength in the development of the following milestones -&#x000A;</fo:block>
+							<fo:block text-align="left">Fine Motor, Vision, Touch and Smell.</fo:block>
 						</fo:table-cell>
 			       	</fo:table-row>
 					
@@ -170,11 +231,21 @@
 					<fo:table-row>
 			            <fo:table-cell padding="5pt">
 							<fo:block text-align="justify">
-								The child shows a partial development of the following milestones, indicating these to be growth areas -
+								The scores are the average range in these areas, meaning that your child sometimes display 
+								skill or ability in the below mentioned areas, but not frequently.  An opportunistic 
+								environment, extra guidance and support would be beneficial for the child to improve in 
+								these areas of development, attain the age appropriate milestones and promote a flourishing 
+								growth of the child.
 							</fo:block>
-							<fo:block text-align="left">
-								Visual Motor, Spatial Awareness, Concept Development, Symbolic representation, Creative Expression, and Listening.
-							</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+			       	
+			       	<fo:table-row>
+			            <fo:table-cell padding="1pt 5pt 5pt 5pt">
+							<fo:block text-align="justify">The child shows a partial development of the following milestones, indicating these to be 
+							growth areas -&#x000A;</fo:block>
+							<fo:block text-align="left">Visual Motor, Spatial Awareness, Concept Development, Symbolic representation, Creative 
+							Expression, and Listening.</fo:block>
 						</fo:table-cell>
 			       	</fo:table-row>
 					
@@ -187,11 +258,22 @@
 					<fo:table-row>
 			            <fo:table-cell padding="5pt">
 							<fo:block text-align="justify">
-								The child shows a low level of development of the following skills/ milestones, indicating these to be challenging aspects of development -
+								The below mentioned areas have low scores and falls under the average range. These areas 
+								might be the ones where your child has problems. The child is not able to perform in these 
+								areas for which the reasons might be many and varied. Attaining age appropriate milestones 
+								is an essential part of a healthy growth and development. If the child has low scores in these 
+								areas, additional intervention may be necessary in order to support the growth and assistance 
+								of these skills.
 							</fo:block>
-							<fo:block text-align="left">
-								Expression, Comprehension, Quantity and Number, Logical thinking and reasoning, Self-Awareness and Interpersonal.
-							</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+			       	
+			       	<fo:table-row>
+			            <fo:table-cell padding="1pt 5pt 5pt 5pt">
+							<fo:block text-align="justify">The child shows a low level of development of the following skills/ milestones, indicating 
+							these to be challenging aspects of development -&#x000A;</fo:block>
+							<fo:block text-align="left">Expression, Comprehension, Quantity and Number, Logical thinking and reasoning, 
+							Self-Awareness and Interpersonal.</fo:block>
 						</fo:table-cell>
 			       	</fo:table-row>
 					
@@ -203,21 +285,74 @@
 					
 					<fo:table-row>
 			            <fo:table-cell padding="5pt">
-							<fo:block text-align="justify">On a concluding note, it is best to mention that you have nothing to lose here, but only to profit from the start until the tracking of each and every child’s development on various traits and parameters, helping them to improve behaviour and striving to create better individuals for a happy and healthy society. The journey until now has truly been a wonderful and rewarding experience. Sincerely hoping a remarkable experience for you, too.</fo:block>
+							<fo:block text-align="justify">Young brains are developing and learning incredibly quickly! Children are actually growing 
+							and learning in all areas of development at all times. This report will help and guide to have 
+							an understanding of the child's development through what they are learning and achieving or 
+							already acquired and achieved according to the age. The report will also provide an idea of 
+							where the child exactly stands in terms of growth and development as per age along with the 
+							challenge areas where the child is facing problems.</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+					
+					<fo:table-row>
+			            <fo:table-cell padding="5pt">
+							<fo:block text-align="justify">The main goal of tracking the developmental milestones is to offer a cohesive analysis of 
+							children's learning and development with common expectations to validate and reassure 
+							parents, teachers or primary caregivers that they are fostering and providing the skills, ideas 
+							and information needed to raise a happy, healthy and a well-adjusted child. Along with this, it 
+							will also be a guiding light for teachers, parents or primary caregivers to support their child 
+							with extra inputs and guidance, if required, so that the child can meet his or her full potential.</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+					
+					<fo:table-row>
+			            <fo:table-cell padding="5pt">
+							<fo:block text-align="justify">The behavioural tracking is done based on the thorough observation of the child made by the 
+							teacher/s during school hours and based on the extra information they get from the parents or 
+							primary caregivers regarding the child's behaviour and conduct.</fo:block>
 						</fo:table-cell>
 			       	</fo:table-row>
 			       	
 			       	<fo:table-row font-weight="bold">
 						<fo:table-cell padding="15pt 5pt 5pt 5pt">
-							<fo:block text-align="left">Disclaimer:</fo:block>
+							<fo:block text-align="left">TO BE NOTED:</fo:block>
 						</fo:table-cell>
 					</fo:table-row>
 					
 					<fo:table-row>
 			            <fo:table-cell padding="5pt">
-							<fo:block text-align="justify">I have spent considerable time interacting and talking to psychologists, teachers, Institution leaders about students behavioural issues and challenges, from which I have understood that there is a  genuine concern and urge to see a healthy growth in the students.</fo:block>
+							<fo:block text-align="justify">Children grow and develop at their own pace! A little delay in achieving the age appropriate  
+							milestones is acceptable and not a matter of concern, but a considerable delay is of course one.</fo:block>
 						</fo:table-cell>
 			       	</fo:table-row>
+					
+					<fo:table-row>
+			            <fo:table-cell padding="5pt">
+							<fo:block text-align="justify">True Insight's Developmental Milestones Tracking Report is not a clinical screening or 
+							diagnostic tool for children, families and professionals. It is not to be used to diagnose or 
+							label a child. It is intended to support parents, teachers and professionals working with 
+							children from 1 ½ to six years of age.</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+					
+					<fo:table-row>
+			            <fo:table-cell padding="5pt">
+							<fo:block text-align="justify">Note that while tracking each stage of development, it is presumed that the preceding stages 
+							have been successfully achieved.  However, if at any point, a milestone has been missed, or 
+							your child resists or struggles while doing things that he or she was once able to do, it 
+							indicates that early intervention might be required to help the child increase the pace of 
+							development. This can be done not only with the parents' support but also through the extra 
+							support of experts such as Occupational Therapists, Physical Therapists, Speech - Language 
+							Pathologists accordingly, who are experts specifically set up to help increase children's 
+							abilities and skills and to support parents in doing the same.</fo:block>
+						</fo:table-cell>
+			       	</fo:table-row>
+			       	
+			       	<fo:table-row font-weight="bold">
+						<fo:table-cell padding="15pt 5pt 5pt 5pt">
+							<fo:block text-align="left">It's OK to ask for help!</fo:block>
+						</fo:table-cell>
+					</fo:table-row>
 			       	
 			  	</fo:table-body>
 			</fo:table>

@@ -34,10 +34,10 @@ public class ChartUtil {
 		CategoryPlot catPlot = chart.getCategoryPlot();
 		BarRenderer renderer = (BarRenderer) catPlot.getRenderer();
 		
-		renderer.setSeriesPaint(0, Color.red);
-		renderer.setSeriesPaint(1, Color.green);
-		renderer.setSeriesPaint(2, Color.blue);
-		renderer.setSeriesPaint(3, Color.yellow);
+		renderer.setSeriesPaint(0, new Color(0, 153, 0));
+		renderer.setSeriesPaint(1, new Color(255, 128, 0));
+		renderer.setSeriesPaint(2, new Color(0, 102, 204));
+		renderer.setSeriesPaint(3, new Color(255, 0, 0));
 		
 		final CategoryAxis domainAxis = catPlot.getDomainAxis();
 		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.createUpRotationLabelPositions(Math.PI / 6.0));
@@ -53,17 +53,31 @@ public class ChartUtil {
 	
 	public static DefaultCategoryDataset getDataSet(){
 		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		dataSet.setValue(3, "Challenge", "Gross Motor");
-		dataSet.setValue(5, "Challenge", "Fine Motor");
-		dataSet.setValue(25, "Clear Strength", "Visual Motor");
-		dataSet.setValue(23, "Clear Strength", "Expression");
-		dataSet.setValue(24, "Clear Strength", "Comprahension");
-		dataSet.setValue(14, "Growth", "Memory");
+		dataSet.setValue(28, "Clear Strength", "Gross Motor");
+		dataSet.setValue(22, "Strength", "Fine Motor");
+		dataSet.setValue(18, "Growth", "Visual Motor");
+		dataSet.setValue(15, "Challenge", "Expression");
+		dataSet.setValue(10, "Challenge", "Comprahension");
+		dataSet.setValue(20, "Growth", "Spatial Awareness");
+		dataSet.setValue(28, "Clear Strength", "Memory");
+		dataSet.setValue(12, "Challenge", "Logical thinking and reasoning");
+		dataSet.setValue(14, "Challenge", "Quantity & Numbers");
+		dataSet.setValue(16, "Growth", "Concept Development");
+		dataSet.setValue(17, "Growth", "Symbolic representation");
+		dataSet.setValue(20, "Growth", "Creative Expression");
+		dataSet.setValue(11, "Challenge", "Self Awareness");
+		dataSet.setValue(15, "Challenge", "Interpersonal");
+		dataSet.setValue(17, "Growth", "Listening");
+		dataSet.setValue(22, "Strength", "Vision");
+		dataSet.setValue(25, "Strength", "Touch");
+		dataSet.setValue(21, "Strength", "Smell");
+		dataSet.setValue(27, "Clear Strength", "Taste");
 		
-		dataSet.setValue(13, "Growth", "Logical thinking and reasoning");
-		dataSet.setValue(12, "Growth", "Quantity & Numbers");
-		dataSet.setValue(16, "Strength", "Concept Development");
-		dataSet.setValue(18, "Strength", "Symbolic representation");
+		
+//		High- 26- 30 -	Clear Strength
+//		Above average-21- 25 -	Strength
+//		Average-16-20 -	Growth
+//		Low- 10- 15 -	Challenge
 		
 		return dataSet;
 	}

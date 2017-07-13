@@ -26,7 +26,7 @@
                     </div>
                         
                     <div class="col-md-5 col-sm-8 footer-link">
-                        	<a href="#">Terms & Conditions</a> | <a href="#">Private Policy</a> | <a href="#">Blog</a>
+                        	<a href="<@ofbizUrl>terms-conditions.html</@ofbizUrl>">Terms & Conditions</a> | <a href="<@ofbizUrl>privacy-refund-policy.html</@ofbizUrl>">Private Policy</a> | <a href="#">Blog</a>
                     </div>
                         
                     <div class="col-md-3 col-sm-9 footer-link">
