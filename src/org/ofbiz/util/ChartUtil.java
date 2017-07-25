@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -17,6 +18,7 @@ import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.ofbiz.admin.StudentEvent;
 
 
 public class ChartUtil {
@@ -24,8 +26,9 @@ public class ChartUtil {
 	public static final String module = ChartUtil.class.getName();
 	
 	
-	public static JFreeChart generateBarChart() {
-		DefaultCategoryDataset dataSet = getDataSet();
+	public static JFreeChart generateBarChart(HttpServletRequest request, String studentId) {
+		List<Map<String, Object>> studentReportList = StudentEvent.getStudentReport(request, studentId);
+		DefaultCategoryDataset dataSet = getDataSet(studentReportList);
 		JFreeChart chart = ChartFactory.createBarChart(
 				"Report", "Category", "Values",
 				dataSet, PlotOrientation.VERTICAL, true, true, false);
@@ -51,10 +54,32 @@ public class ChartUtil {
 		return chart;
 	}
 	
-	public static DefaultCategoryDataset getDataSet(){
+	public static DefaultCategoryDataset getDataSet(List<Map<String, Object>> studentReportList){
 		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		dataSet.setValue(28, "Clear Strength", "Gross Motor");
-		dataSet.setValue(22, "Strength", "Fine Motor");
+		
+		Map<String, Object> studentReportEach = null;
+		double studentTotalPercentage = 0;
+		String scoreRange;
+		ListIterator<Map<String, Object>> studentReportIterator = studentReportList.listIterator();
+		while(studentReportIterator.hasNext()) {
+			studentReportEach = studentReportIterator.next();
+			studentTotalPercentage = (double) studentReportEach.get("totalScorePercentage");
+			if(studentTotalPercentage <= 50) {
+				scoreRange = "Challenge"; // "Low" Range : 0-50%
+			} else if(studentTotalPercentage >= 51 && studentTotalPercentage <= 70) {
+				scoreRange = "Growth"; // "Average" Range : 51-70%
+			} else if(studentTotalPercentage >= 71 && studentTotalPercentage <= 85) {
+				scoreRange = "Strength"; // "Above average" Range : 71-85%
+			} else {
+				scoreRange = "Clear Strength"; // "High" Range : 86-100%
+			}
+			
+			dataSet.setValue((double) studentReportEach.get("totalScoreEachCategory"), scoreRange, (String) studentReportEach.get("categoryDescription"));
+			
+			studentReportEach.clear();
+		}
+		
+		/*dataSet.setValue(22, "Strength", "Fine Motor");
 		dataSet.setValue(18, "Growth", "Visual Motor");
 		dataSet.setValue(15, "Challenge", "Expression");
 		dataSet.setValue(10, "Challenge", "Comprahension");
@@ -71,7 +96,7 @@ public class ChartUtil {
 		dataSet.setValue(22, "Strength", "Vision");
 		dataSet.setValue(25, "Strength", "Touch");
 		dataSet.setValue(21, "Strength", "Smell");
-		dataSet.setValue(27, "Clear Strength", "Taste");
+		dataSet.setValue(27, "Clear Strength", "Taste");*/
 		
 		
 //		High- 26- 30 -	Clear Strength

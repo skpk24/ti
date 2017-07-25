@@ -35,7 +35,7 @@
                     <input type="file" size="50" name="uploadFile"/>
                     <input type="hidden" name="uploadHere" value="y"/>
                     <input type="hidden" name="uploadType" value="student"/>
-                    <input type="hidden" name="partyId" value="trueinsight"/>
+                    <input type="hidden" name="partyId" value="${parameters.partyId?if_exists}"/>
                     <input type="hidden" name="productid" value="${parameters.id?if_exists}"/>
                 </div>
 			 	<div class="col-lg-12">

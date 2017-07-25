@@ -6,6 +6,7 @@ import org.ofbiz.entity.util.*;
 if(userLogin){
 	party = delegator.findOne("Party", UtilMisc.toMap("partyId", userLogin.partyId), true);
 	context.party = party;
+	println("\n \n Party = "+party+"\n \n");
 	org = delegator.findOne("Party", UtilMisc.toMap("partyId", party.orgId), true);
 	context.org = org;
 	
@@ -25,9 +26,9 @@ if(userLogin){
 			//print("\n\n center == "+grade.relationshipName+"\n\n");
 		}
 	}
-	graph = org.ofbiz.util.ChartUtil.getImageFileB64String(org.ofbiz.util.ChartUtil.generateBarChart());
+	graph = org.ofbiz.util.ChartUtil.getImageFileB64String(org.ofbiz.util.ChartUtil.generateBarChart(request, userLogin.partyId));
 	context.graph = graph;
 	
-	print("\n\n graph == "+graph+"\n\n");
+	//print("\n\n graph == "+graph+"\n\n");
 }
 

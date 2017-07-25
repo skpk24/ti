@@ -25,7 +25,7 @@
                     <input type="file" size="50" name="uploadFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
                     <input type="hidden" name="uploadHere" value="y" />
                     <input type="hidden" name="uploadType" value="teacher"/>
-                    <input type="hidden" name="partyId" value="trueinsight"/>
+                    <input type="hidden" name="partyId" value="${parameters.partyId?if_exists}"/>
                     <input type="hidden" name="productid" value="${parameters.id?if_exists}"/>
                 </div>
 			 	<div class="col-lg-12">

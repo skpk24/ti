@@ -3,6 +3,9 @@ package org.ofbiz.util;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -416,9 +419,14 @@ public class AdminUtil {
 		}
 	}
 	
-	private static GenericValue createUserPermission(Delegator delegator, Map paramMap) {
+	private static GenericValue createUserPermission(Delegator delegator, Map paramMap) throws ParseException {
 		// TODO Auto-generated method stub
-		return delegator.makeValue("UserLoginSecurityGroup", UtilMisc.toMap("userLoginId", paramMap.get("fatherMobelNo"),"groupId", paramMap.get("groupId"),"fromDate", UtilDateTime.nowTimestamp()));
+		SimpleDateFormat tmp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String nowTimeStr = tmp.format(UtilDateTime.nowTimestamp());
+		Date nowTimeUtilDate = tmp.parse(nowTimeStr);
+		Timestamp nowTimeSql = new Timestamp(nowTimeUtilDate.getTime());
+		
+		return delegator.makeValue("UserLoginSecurityGroup", UtilMisc.toMap("userLoginId", paramMap.get("fatherMobelNo"),"groupId", paramMap.get("groupId"),"fromDate", nowTimeSql));
 	}
 
 	public static List<GenericValue> relateCenter(Delegator delegator, Map paramMap){

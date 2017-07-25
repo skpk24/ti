@@ -1,8 +1,11 @@
 package org.ofbiz.admin;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,9 @@ import org.ofbiz.base.util.UtilMisc;
 import org.ofbiz.base.util.UtilValidate;
 import org.ofbiz.entity.Delegator;
 import org.ofbiz.entity.GenericValue;
+import org.ofbiz.entity.condition.EntityCondition;
+import org.ofbiz.entity.condition.EntityOperator;
+import org.ofbiz.entity.util.EntityUtil;
 import org.ofbiz.common.filesystem.exel.ExcelUtil;
 import java.util.Iterator;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -98,5 +104,68 @@ public class StudentEvent {
 			e.printStackTrace();
 		}
 		return stuents;
+	}
+	
+	public static List<Map<String, Object>> getStudentReport(HttpServletRequest request, String studentId) {
+		Delegator delegator = (Delegator) request.getAttribute("delegator");
+		List<Map<String, Object>> studentReportList = new ArrayList<Map<String, Object>>();
+		
+		if(UtilValidate.isNotEmpty(studentId)) {
+			try {
+				//To get survey response id
+				List<GenericValue> surveyResponseList = delegator.findList("SurveyResponse", EntityCondition.makeCondition("referenceId", studentId), UtilMisc.toSet("surveyResponseId", "surveyId", "partyId"), null, null, true);
+				// Get student section
+				EntityCondition entityCondition = EntityCondition.makeCondition(EntityCondition.makeCondition("partyIdTo", studentId),
+															EntityOperator.AND, EntityCondition.makeCondition("roleTypeIdTo", "STUDENT"));
+				List<GenericValue> sectionList = delegator.findList("PartyRelationship", entityCondition, UtilMisc.toSet("partyIdFrom"), null, null, true);
+				// Get student grade
+				if(UtilValidate.isNotEmpty(sectionList) && sectionList.size() > 0) {
+					entityCondition = EntityCondition.makeCondition(EntityCondition.makeCondition("partyIdTo", sectionList.get(0).getString("partyIdFrom")),
+															EntityOperator.AND, EntityCondition.makeCondition("roleTypeIdTo", "SECTION"));
+					List<GenericValue> gradeList = delegator.findList("PartyRelationship", entityCondition, UtilMisc.toSet("partyIdFrom"), null, null, true);
+					// Get survey id from grade
+					if(UtilValidate.isNotEmpty(gradeList) && gradeList.size() > 0) {
+						List<GenericValue> partySurveyList = delegator.findList("PartySurvey", EntityCondition.makeCondition("partyId", gradeList.get(0).getString("partyIdFrom")), UtilMisc.toSet("surveyId"), UtilMisc.toList("fromDate DESC"), null, true);
+						// Get survey category id from survey id
+						if(UtilValidate.isNotEmpty(partySurveyList) && partySurveyList.size() > 0) {
+							List<GenericValue> surveyQueCategoryList = delegator.findList("SurveyQuestionCategory", EntityCondition.makeCondition("surveyId", partySurveyList.get(0).getString("surveyId")), UtilMisc.toSet("surveyQuestionCategoryId", "description"), UtilMisc.toList("surveyQuestionCategoryId"), null, true);
+							//
+							if(UtilValidate.isNotEmpty(surveyQueCategoryList) && surveyQueCategoryList.size() > 0) {
+								ListIterator<GenericValue> surveyQueCategoryIterator = surveyQueCategoryList.listIterator();
+								GenericValue nextValue;
+								double totalScorePercentage;
+								Long totalScoreEachCategory;
+								List<Long> numericResponseList = new ArrayList<Long>();
+								while(surveyQueCategoryIterator.hasNext()) {
+									nextValue = surveyQueCategoryIterator.next();
+									numericResponseList.clear();
+									totalScoreEachCategory = 0L;
+									totalScorePercentage = 0;
+									if(UtilValidate.isNotEmpty(surveyResponseList) && surveyResponseList.size() > 0) {
+										//Get survey questions id
+										List<GenericValue> surveyQuestionList = delegator.findList("SurveyQuestion", EntityCondition.makeCondition("surveyQuestionCategoryId", nextValue.getString("surveyQuestionCategoryId")), UtilMisc.toSet("surveyQuestionId"), UtilMisc.toList("surveyQuestionId"), null, true);
+										if(UtilValidate.isNotEmpty(surveyQuestionList) && surveyQuestionList.size() > 0) {
+											entityCondition = EntityCondition.makeCondition(EntityCondition.makeCondition("surveyResponseId", surveyResponseList.get(0).getString("surveyResponseId")),
+																			EntityOperator.AND, EntityCondition.makeCondition("surveyQuestionId", EntityOperator.IN, EntityUtil.getFieldListFromEntityList(surveyQuestionList, "surveyQuestionId", true)));
+											List<GenericValue> surveyResponseAnsList = delegator.findList("SurveyResponseAnswer", entityCondition, UtilMisc.toSet("numericResponse"), null, null, false);
+											numericResponseList = EntityUtil.getFieldListFromEntityList(surveyResponseAnsList, "numericResponse", false);
+											for(Long number : numericResponseList) {
+												totalScoreEachCategory = totalScoreEachCategory + number;
+											}
+											totalScorePercentage = (totalScoreEachCategory.doubleValue() * 100) / (surveyQuestionList.size() * 3);
+										}
+									}
+									studentReportList.add(UtilMisc.toMap("categoryDescription", nextValue.getString("description"), "totalScorePercentage", totalScorePercentage, "totalScoreEachCategory", totalScoreEachCategory.doubleValue()));
+								}
+							}
+						}
+					}
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return studentReportList;
 	}
 }

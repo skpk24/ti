@@ -152,8 +152,9 @@ public class ExcelUtil {
 					rowData.put("gender", cellVal);
 					break;
 				case 5:
+					cell.setCellType(Cell.CELL_TYPE_STRING);
 					cellVal = findCellType(cell);
-					rowData.put("fatherMobelNo", cellVal);
+					rowData.put("fatherMobelNo", cellVal.toString());
 					break;
 				}
 			}
@@ -164,7 +165,7 @@ public class ExcelUtil {
 		}
 	}
 	
-	public static void prepareTeacherParty(XSSFSheet spreadsheet, Delegator delegator, Map paramMap) {
+	public static void prepareTeacherParty(XSSFSheet spreadsheet, Delegator delegator, Map paramMap) throws InterruptedException {
 		Iterator<Row> rowIterator = spreadsheet.iterator();
 		// to skip header values
 		rowIterator.next();

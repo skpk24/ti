@@ -16,7 +16,7 @@
     	<div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-					<div id="tree1" data-url="/adminRest/private/json/ti/getTree/trueinsight/yes"></div>
+					<div id="tree1" data-url="/adminRest/private/json/ti/getTree/edupaedia/yes"></div>
 				</div>
 			</div>
     	</div>
