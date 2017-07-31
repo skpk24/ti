@@ -15,6 +15,7 @@
     
     <extend-entity entity-name="Person">
     	<field name="fatherMobelNo" type="short-varchar"/>
+    	<field name="motherMobilNo" type="short-varchar"/>
     	<field name="email" type="short-varchar"/>
     </extend-entity>
     
@@ -36,6 +37,19 @@
             <key-map field-name="surveyId"/>
         </relation>
     </extend-entity>
+    
+    <entity entity-name="ParentMultiChilds" package-name="">
+    	<field name="userLoginId" type="id-vlong-ne"></field>
+    	<field name="partyId" type="id-ne"></field>
+    	<prim-key field="userLoginId"/>
+    	<prim-key field="partyId"/>
+    	<relation rel-entity-name="Party" type="one" fk-name="PARENTMULTICHLDPARTY">
+    		<key-map field-name="partyId"/>
+    	</relation>
+    	<relation rel-entity-name="UserLogin" type="one" fk-name="PARENTMULTICHLDUSERLG">
+    		<key-map field-name="userLoginId"/>
+    	</relation>
+    </entity>
     
 
 </entitymodel>

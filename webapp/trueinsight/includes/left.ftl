@@ -17,7 +17,25 @@
             </li>
             <#else>
             <li>
-                <a href="report.html" class="mi-support">Report</a>
+                <a href="#" class="mi-support" onclick="toggle_visibility('subChilds');">Report</a>
+            	<#if userLogin?? && userLogin?has_content>
+	            	<form action="report.html" method="POST" id="reportForm">
+	            		<input type="hidden" name="partyId" id="inptParty"/>
+	                	<ul id="subChilds" style="display:none;">
+		                	<#if multiChildExists?exists && multiChildExists?has_content>
+			                	<#if multiChildExists && partyDetails?? && partyDetails?has_content>
+			                		<#list partyDetails as partyDetailsEach>
+			                			<li><a href="#" class="mi-support" onclick="getReport('${partyDetailsEach.partyId?if_exists}')">${partyDetailsEach.firstName?if_exists} ${partyDetailsEach.lastName?if_exists}</a></li>
+			                		</#list>
+			                	<#else>
+			                		<li><a href="#" class="mi-support" onclick="getReport('${userLogin.partyId?if_exists}')"><#if party?has_content>${party.description}</#if></a></li>
+			                	</#if>
+			                <#else>
+		                		<li><a href="#" class="mi-support" onclick="getReport('${userLogin.partyId?if_exists}')"><#if party?has_content>${party.description}</#if></a></li>
+		                	</#if>
+	                	</ul>
+	            	</form>
+            	</#if>
             </li>
             </#if>
             <#--li>
@@ -65,3 +83,16 @@
 	    
 	    </#if-->
     </nav>
+ <script type="text/javascript">
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+    function getReport(partyNub) {
+    	$("#inptParty").val(partyNub);
+    	$("#reportForm").submit();
+    }
+</script>

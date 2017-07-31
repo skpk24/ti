@@ -326,7 +326,42 @@ public class AdminUtil {
 	public static String createUpdateStudent(Map paramMap, Delegator delegator) {
 		try{
 			Debug.log("\n\n paramMap == "+paramMap+"\n\n");
-			String partyId = delegator.getNextSeqId("Party");
+			
+			String partyId = null;
+			List<EntityCondition> checkUserLoginExists = new ArrayList<EntityCondition>();
+			if(UtilValidate.isNotEmpty(paramMap.get("fatherMobelNo"))){
+				checkUserLoginExists.add(EntityCondition.makeCondition("userLoginId", paramMap.get("fatherMobelNo")));
+			}
+			if(UtilValidate.isNotEmpty(paramMap.get("motherMobilNo"))){
+				checkUserLoginExists.add(EntityCondition.makeCondition("userLoginId", paramMap.get("motherMobilNo")));
+			}
+			if(UtilValidate.isNotEmpty(checkUserLoginExists)){
+				EntityFindOptions findOptions = new EntityFindOptions();
+				findOptions.setDistinct(true);
+				List<GenericValue> userLoginExistList = delegator.findList("ParentMultiChilds", EntityCondition.makeCondition(checkUserLoginExists, EntityOperator.OR), UtilMisc.toSet("partyId"), null, findOptions, false);
+				if(UtilValidate.isNotEmpty(userLoginExistList)) {
+					System.out.println("Inside ParentMultiChilds exist");
+					checkUserLoginExists.clear();
+					checkUserLoginExists.add(EntityCondition.makeCondition("partyId", EntityOperator.IN, EntityUtil.getFieldListFromEntityList(userLoginExistList, "partyId", true)));
+					if(UtilValidate.isNotEmpty(paramMap.get("firstName"))){ checkUserLoginExists.add(EntityCondition.makeCondition("firstName", paramMap.get("firstName"))); }
+					if(UtilValidate.isNotEmpty(paramMap.get("lastName"))){ checkUserLoginExists.add(EntityCondition.makeCondition("lastName", paramMap.get("lastName"))); }
+					List<GenericValue> getPersonList = delegator.findList("Person", EntityCondition.makeCondition(checkUserLoginExists, EntityOperator.AND), UtilMisc.toSet("partyId"), null, findOptions, false);
+					if(UtilValidate.isNotEmpty(getPersonList)) {
+						partyId = EntityUtil.getFirst(getPersonList).getString("partyId");
+					}
+				} else {
+					List<GenericValue> getUserLoginList = delegator.findList("UserLogin", EntityCondition.makeCondition(checkUserLoginExists, EntityOperator.OR), UtilMisc.toSet("partyId"), null, findOptions, false);
+					if(UtilValidate.isNotEmpty(getUserLoginList)) {
+						System.out.println("Inside ParentMultiChilds not exist");
+						partyId = EntityUtil.getFirst(getUserLoginList).getString("partyId");
+					}
+				}
+			}
+			System.out.println("\n Party Id = "+partyId+"\n \n");
+			
+			if(UtilValidate.isEmpty(partyId)) {
+				partyId = delegator.getNextSeqId("Party");
+			}
 			paramMap.put("studentId", partyId);
 			paramMap.put("partyId", partyId);
 			String password = "123456";
@@ -336,11 +371,21 @@ public class AdminUtil {
 			String gender = ((String)paramMap.get("gender")).equalsIgnoreCase("Male")?"M":"F";
 			List<GenericValue> toBeStored = new LinkedList<GenericValue>();
 			toBeStored.add(delegator.makeValue("Party", UtilMisc.toMap("partyId", partyId, "description", name, "partyTypeId", "PERSON", "createdDate", UtilDateTime.nowTimestamp(),"orgId", paramMap.get("orgId"))));
-			toBeStored.add(delegator.makeValue("Person", UtilMisc.toMap("partyId", partyId, "firstName", paramMap.get("firstName"),"lastName", paramMap.get("lastName"), "gender", gender, "fatherMobelNo", paramMap.get("fatherMobelNo"))));
+			toBeStored.add(delegator.makeValue("Person", UtilMisc.toMap("partyId", partyId, "firstName", paramMap.get("firstName"),"lastName", paramMap.get("lastName"), "gender", gender, "fatherMobelNo", paramMap.get("fatherMobelNo"), "motherMobilNo", paramMap.get("motherMobilNo"))));
 			toBeStored.add(delegator.makeValue("PartyRole", UtilMisc.toMap("partyId", partyId, "roleTypeId", "STUDENT")));
-			toBeStored.add(createUserLogin(delegator, paramMap));
 			paramMap.put("groupId", "PARENT");
-			toBeStored.add(createUserPermission(delegator, paramMap));
+			if(UtilValidate.isNotEmpty(paramMap.get("fatherMobelNo"))){
+				toBeStored.add(createUserLogin(delegator, paramMap));
+				toBeStored.add(createUserPermission(delegator, paramMap));
+			}
+			if(UtilValidate.isNotEmpty(paramMap.get("motherMobilNo"))){
+				toBeStored.add(createUserLoginMother(delegator, paramMap));
+				toBeStored.add(createUserPermissionMother(delegator, paramMap));
+			}
+			List<GenericValue> parentMultiChildList = createParentMultipleChilds(delegator, paramMap);
+			if(UtilValidate.isNotEmpty(parentMultiChildList)) {
+				toBeStored.addAll(parentMultiChildList);
+			}
 			
 			paramMap.put("roleTypeId", "STUDENT");
 			/*
@@ -428,6 +473,16 @@ public class AdminUtil {
 		
 		return delegator.makeValue("UserLoginSecurityGroup", UtilMisc.toMap("userLoginId", paramMap.get("fatherMobelNo"),"groupId", paramMap.get("groupId"),"fromDate", nowTimeSql));
 	}
+	
+	private static GenericValue createUserPermissionMother(Delegator delegator, Map paramMap) throws ParseException {
+		// TODO Auto-generated method stub
+		SimpleDateFormat tmp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String nowTimeStr = tmp.format(UtilDateTime.nowTimestamp());
+		Date nowTimeUtilDate = tmp.parse(nowTimeStr);
+		Timestamp nowTimeSql = new Timestamp(nowTimeUtilDate.getTime());
+		
+		return delegator.makeValue("UserLoginSecurityGroup", UtilMisc.toMap("userLoginId", paramMap.get("motherMobilNo"),"groupId", paramMap.get("groupId"),"fromDate", nowTimeSql));
+	}
 
 	public static List<GenericValue> relateCenter(Delegator delegator, Map paramMap){
 		List<GenericValue> toBeStored = new LinkedList<GenericValue>();
@@ -491,7 +546,7 @@ public class AdminUtil {
 			if(UtilValidate.isNotEmpty(grade)){
 				GenericValue section = EntityUtil.getFirst(delegator.findList("PartyRelationship", EntityCondition.makeCondition(UtilMisc.toMap("partyIdFrom", grade.getString("partyIdTo"), "relationshipName", ((String)paramMap.get("SECTION")).trim(), "roleTypeIdFrom", "GRADE", "roleTypeIdTo", "SECTION")), null, null, readonly, true));
 				if(UtilValidate.isNotEmpty(section)){
-					toBeStored.add(delegator.makeValue("PartyRelationship",UtilMisc.toMap("partyIdFrom",section.getString("partyIdTo"),"partyIdTo", paramMap.get("partyId"),"partyRelationshipTypeId", "GROUP_ROLLUP", "roleTypeIdFrom", "SECTION", "roleTypeIdTo",  paramMap.get("roleTypeId"), "relationshipName", paramMap.get("name"), "fromDate", UtilDateTime.nowTimestamp())));
+					toBeStored.add(delegator.makeValue("PartyRelationship",UtilMisc.toMap("partyIdFrom",section.getString("partyIdTo"),"partyIdTo", paramMap.get("partyId"),"partyRelationshipTypeId", "GROUP_ROLLUP", "roleTypeIdFrom", "SECTION", "roleTypeIdTo",  paramMap.get("roleTypeId"), "relationshipName", paramMap.get("name"), "fromDate", section.getTimestamp("fromDate"))));
 				}else{
 					toBeStored.add(delegator.makeValue("PartyRelationship",UtilMisc.toMap("partyIdFrom",paramMap.get("centerId"),"partyIdTo", paramMap.get("partyId"),"partyRelationshipTypeId", "GROUP_ROLLUP", "roleTypeIdFrom", "CENTER", "roleTypeIdTo",  paramMap.get("roleTypeId"), "relationshipName", paramMap.get("name"), "fromDate", UtilDateTime.nowTimestamp())));
 				}
@@ -589,5 +644,46 @@ public class AdminUtil {
 		
         return userLoginToCreate;
 		
+	}
+	
+	public static GenericValue createUserLoginMother(Delegator delegator, Map paramMap){
+		boolean useEncryption = "true".equals(EntityUtilProperties.getPropertyValue("security", "password.encrypt", delegator));
+		GenericValue userLoginToCreate = delegator.makeValue("UserLogin", UtilMisc.toMap("userLoginId", paramMap.get("motherMobilNo")));
+        userLoginToCreate.set("enabled", "Y");
+        //userLoginToCreate.set("requirePasswordChange", "Y");
+        userLoginToCreate.set("currentPassword", useEncryption ? HashCrypt.cryptUTF8(getHashType(), null, (String)paramMap.get("currentPassword")) : paramMap.get("currentPassword"));
+        try {
+            userLoginToCreate.set("partyId", paramMap.get("partyId"));
+        } catch (Exception e) {
+            // Will get thrown in framework-only installation
+            Debug.logInfo(e, "Exception thrown while setting UserLogin partyId field for mother: ", module);
+        }
+        /*
+        try {
+            EntityCondition condition = EntityCondition.makeCondition(EntityFunction.UPPER_FIELD("userLoginId"), EntityOperator.EQUALS, EntityFunction.UPPER(paramMap.get("fatherMobelNo")));
+            if (UtilValidate.isNotEmpty(EntityQuery.use(delegator).from("UserLogin").where(condition).queryList())) {
+                Map<String, String> messageMap = UtilMisc.toMap("userLoginId",  paramMap.get("fatherMobelNo"));
+            }
+        } catch (GenericEntityException e) {
+            Debug.logWarning(e, "", module);
+            Map<String, String> messageMap = UtilMisc.toMap("errorMessage", e.getMessage());
+        }*/
+		
+        return userLoginToCreate;
+		
+	}
+	
+	public static List<GenericValue> createParentMultipleChilds(Delegator delegator, Map paramMap)
+	{
+		List<GenericValue> parentMultipleChildsList = new ArrayList<GenericValue>();
+		
+		if(UtilValidate.isNotEmpty(paramMap.get("fatherMobelNo"))) {
+			parentMultipleChildsList.add(delegator.makeValue("ParentMultiChilds", UtilMisc.toMap("userLoginId", paramMap.get("fatherMobelNo"), "partyId", paramMap.get("partyId"))));
+		}
+		if(UtilValidate.isNotEmpty(paramMap.get("motherMobilNo"))) {
+			parentMultipleChildsList.add(delegator.makeValue("ParentMultiChilds", UtilMisc.toMap("userLoginId", paramMap.get("motherMobilNo"), "partyId", paramMap.get("partyId"))));
+		}
+		
+		return parentMultipleChildsList;
 	}
 }

@@ -156,6 +156,11 @@ public class ExcelUtil {
 					cellVal = findCellType(cell);
 					rowData.put("fatherMobelNo", cellVal.toString());
 					break;
+				case 6:
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					cellVal = findCellType(cell);
+					rowData.put("motherMobilNo", cellVal.toString());
+					break;
 				}
 			}
 			rowData.put("orgId", paramMap.get("partyId"));

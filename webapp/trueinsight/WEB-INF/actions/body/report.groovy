@@ -4,13 +4,18 @@ import org.ofbiz.entity.condition.*
 import org.ofbiz.entity.util.*;
 
 if(userLogin){
-	party = delegator.findOne("Party", UtilMisc.toMap("partyId", userLogin.partyId), true);
+	partyId = request.getParameter("partyId");
+	print("\n\n partyIdGry == "+partyId+"\n\n");
+	if(!partyId) {
+		partyId = userLogin.partyId;
+	}
+	party = delegator.findOne("Party", UtilMisc.toMap("partyId", partyId), true);
 	context.party = party;
 	println("\n \n Party = "+party+"\n \n");
 	org = delegator.findOne("Party", UtilMisc.toMap("partyId", party.orgId), true);
 	context.org = org;
 	
-	person = delegator.findOne("Person", UtilMisc.toMap("partyId", userLogin.partyId), true);
+	person = delegator.findOne("Person", UtilMisc.toMap("partyId", partyId), true);
 	context.person = person;
 	
 	gv = delegator.findOne("UserLogin", UtilMisc.toMap("userLoginId", userLogin.userLoginId), false);
@@ -26,7 +31,7 @@ if(userLogin){
 			//print("\n\n center == "+grade.relationshipName+"\n\n");
 		}
 	}
-	graph = org.ofbiz.util.ChartUtil.getImageFileB64String(org.ofbiz.util.ChartUtil.generateBarChart(request, userLogin.partyId));
+	graph = org.ofbiz.util.ChartUtil.getImageFileB64String(org.ofbiz.util.ChartUtil.generateBarChart(request, partyId));
 	context.graph = graph;
 	
 	//print("\n\n graph == "+graph+"\n\n");
