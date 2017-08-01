@@ -6,6 +6,12 @@
                 <a href="#top" onclick="$('#menu-close').click();"></a>
             </li>
             <li>
+                <#if userLogin?has_content>
+	            <a href="#" class="mi-insight"><span class="welcome">Welcome</span>
+	            <span style="text-transform:none"><#if party?has_content>${party.description}</#if></span></a>
+			    </#if>
+            </li>
+            <li>
                 <a href="about-us.html" class="mi-about">About Us</a>
             </li>
             <li>

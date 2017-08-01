@@ -6,7 +6,7 @@
                 	<div class="row">
                     <form action="<@ofbizUrl>save.html</@ofbizUrl>" name="students" method="POST" id="radio-btn">
                         <div class="form-group">	
-                        	<div class="col-md-12">
+                        	<div class="">
                                 <div class="question-panel">
                                     <#if qAppls?has_content>
                                     	<#assign cnt = 1 />
@@ -37,7 +37,7 @@
                         </div>
                          
                         
-                        <div class="col-md-12" align="right">
+                        <div class="" align="right">
                         <a href="<@ofbizUrl>students.html</@ofbizUrl>" class="btn btn-danger">PREVIOUS</a>
                         <input type="submit" value="SUBMIT" class="btn btn-success " style="color:#333333;">
                         </div>

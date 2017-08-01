@@ -190,6 +190,11 @@ hr.small {
 	padding: 13px 20px 0 0;
 	float:right;
 }
+.right_btn_logout {
+	float:right; 
+	padding: 13px 10px 0 0;
+	float:right;
+}
 .right_btn_login {
 	float:right; 
 	padding: 13px 20px 0 0;
@@ -197,7 +202,6 @@ hr.small {
 }
 .right_btn_login_M {
 	display:none;
-
 }
 .btn-login {
     color: #fff;
@@ -313,7 +317,7 @@ hr.small {
 	width:auto;
 	height:35px;
 	float:left;
-	border-right:1px solid #d6d6d6;
+	/*border-right:1px solid #d6d6d6;*/
 	padding-right:15px;
 	padding-left:10px;
 	line-height:15px;
@@ -661,6 +665,7 @@ hr.small {
 
 .services {
     padding: 50px 0;
+    min-height:550px;
 }
 
 .service-item {
@@ -769,9 +774,13 @@ footer {
 }
 .right_btn {
 	float:right; 
-	padding: 13px 0px 0 0;
+	padding: 13px 10px 0 0;
 	float:right;
-	
+}
+.right_btn_logout {
+	float:right; 
+	padding: 13px 10px 0 0;
+	float:right;
 }
 .btn-login {
 	width:auto;
@@ -780,6 +789,9 @@ footer {
 	text-indent:-5000px;
 	background: url(../img/login-icon.jpg) no-repeat;
 	margin-right:5px;
+}
+.right_btn_hide {
+	display:none;
 }
 .btn-login:hover,
 .btn-login:focus,
@@ -842,7 +854,7 @@ footer {
     height: 55px;
     font-size: 18px;
     line-height: 55px;
-	margin-top:60px;
+	margin-top:20px;
 }
 .breadcrumb { 
   list-style: none; 
