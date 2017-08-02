@@ -185,6 +185,15 @@
 	</script>
 	</#if>
 	
+	<script type="text/javascript">
+  window._mfq = window._mfq || [];
+  (function() {
+    var mf = document.createElement("script");
+    mf.type = "text/javascript"; mf.async = true;
+    mf.src = "//cdn.mouseflow.com/projects/15c23d75-a942-4a41-b027-b928d6ac3cdd.js";
+    document.getElementsByTagName("head")[0].appendChild(mf);
+  })();
+</script>
 </body>
 
 </html>
