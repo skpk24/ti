@@ -13,7 +13,7 @@
         	<div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-    					<div id="tree1" data-url="/adminRest/private/json/ti/getTree/trueinsight/no"></div>
+    					<div id="tree1" data-url="/adminRest/private/json/ti/getTree/${parameters.partyId?if_exists}/no"></div>
     				</div>
     			</div>
         	</div>

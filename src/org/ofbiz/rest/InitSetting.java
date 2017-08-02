@@ -19,6 +19,7 @@ import org.ofbiz.base.util.UtilMisc;
 import org.ofbiz.base.util.UtilValidate;
 import org.ofbiz.entity.GenericValue;
 import org.ofbiz.entity.condition.EntityCondition;
+import org.ofbiz.entity.condition.EntityOperator;
 
 import javolution.util.FastMap;
 
@@ -37,8 +38,8 @@ public class InitSetting implements Accessor {
 	  */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/getTree/{id}/{showTeacher}")
-	public String initAccount(@PathParam("id") String id,@PathParam("showTeacher") String showTeacher) throws Exception {
+	@Path("/getTree/{id}/{showTeacher}/{idTo}")
+	public String initAccount(@PathParam("id") String id, @PathParam("showTeacher") String showTeacher, @PathParam("idTo") String idTo) throws Exception {
 		Map<String, Object> response = FastMap.newInstance();
 		ObjectMapper mapper = new ObjectMapper();
 		List data = new ArrayList();
@@ -51,6 +52,9 @@ public class InitSetting implements Accessor {
 			Map<String, Object> root = new HashMap();
 			//data.add(root);
 			EntityCondition entityCondition = EntityCondition.makeCondition(UtilMisc.toMap("partyIdFrom",id, "roleTypeIdFrom", "INTERNAL_ORGANIZATIO", "roleTypeIdTo", "CENTER"));
+			if(UtilValidate.isNotEmpty(idTo) && !id.equalsIgnoreCase(idTo)){
+				entityCondition = EntityCondition.makeCondition(entityCondition, EntityOperator.AND, EntityCondition.makeCondition("partyIdTo", idTo));
+			}
 			List<GenericValue> gvLst = delegator.findList("PartyRelationship", entityCondition, null, UtilMisc.toList("createdStamp ASC"), readonly, true);
 			Map<String, Object> main = UtilMisc.toMap("label", gv.getString("description")!=null?gv.getString("description"):gv.getString("partyId")+" - [School]["+gvLst.size()+"]");
 

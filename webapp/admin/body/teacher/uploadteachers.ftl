@@ -6,7 +6,6 @@
         			<button type="button" class="btn btn-success btn-circle"><i class="fa fa-backward"></i></button>
         		</a>
             	Upload File
-            	
             	<!--div class="pull-right"> 
                 	<a class="btn btn-xs btn-info" href="${request.getContextPath()}/static/js/Product_Test.xlsx"><span class="fa fa-folder-open fa-fw"></span>Product Import Sample</a>
                 </div-->
