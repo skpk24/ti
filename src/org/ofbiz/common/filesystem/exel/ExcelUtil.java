@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -19,6 +21,7 @@ import org.apache.commons.collections4.MultiMap;
 import org.apache.commons.collections4.map.MultiValueMap;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFDrawing;
@@ -117,7 +120,8 @@ public class ExcelUtil {
 		}
 	}
 
-	public static void prepareParty(XSSFSheet spreadsheet, Delegator delegator, Map paramMap ) {
+	public static void prepareParty(XSSFSheet spreadsheet, Delegator delegator, Map paramMap ) throws ParseException {
+		SimpleDateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Iterator<Row> rowIterator = spreadsheet.iterator();
 		// to skip header values
 		rowIterator.next();
@@ -132,39 +136,60 @@ public class ExcelUtil {
 				Object cellVal = null;
 				switch (cell.getColumnIndex()) {
 				case 0:
-					cellVal = findCellType(cell);
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell);
 					rowData.put("firstName", cellVal);
 					break;
 				case 1:
-					cellVal = findCellType(cell);
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell);
 					rowData.put("lastName", cellVal);
 					break;
 				case 2:
-					cellVal = findCellType(cell);
-					rowData.put("GRADE", cellVal);
+					cellVal = (isCellEmpty(cell)) ? null : new Date(sqlDateFormat.parse(sqlDateFormat.format(findCellType(cell))).getTime());
+					rowData.put("dateOfBirth", cellVal);
 					break;
 				case 3:
-					cellVal = findCellType(cell);
-					rowData.put("SECTION", cellVal);
-					break;
-				case 4:
-					cellVal = findCellType(cell);
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell);
 					rowData.put("gender", cellVal);
 					break;
+				case 4:
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell);
+					rowData.put("GRADE", cellVal);
+					break;
 				case 5:
-					cell.setCellType(Cell.CELL_TYPE_STRING);
-					cellVal = findCellType(cell);
-					rowData.put("fatherMobelNo", cellVal.toString());
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell);
+					rowData.put("SECTION", cellVal);
 					break;
 				case 6:
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell);
+					rowData.put("fatherName", cellVal);
+					break;
+				case 7:
 					cell.setCellType(Cell.CELL_TYPE_STRING);
-					cellVal = findCellType(cell);
-					rowData.put("motherMobilNo", cellVal.toString());
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell).toString();
+					rowData.put("fatherMobelNo", cellVal);
+					break;
+				case 8:
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell);
+					rowData.put("fatherEmailId", cellVal);
+					break;
+				case 9:
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell);
+					rowData.put("motherName", cellVal);
+					break;
+				case 10:
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell).toString();
+					rowData.put("motherMobilNo", cellVal);
+					break;
+				case 11:
+					cellVal = (isCellEmpty(cell)) ? null : findCellType(cell);
+					rowData.put("motherEmailId", cellVal);
 					break;
 				}
 			}
 			rowData.put("orgId", paramMap.get("partyId"));
 			rowData.put("centerId", paramMap.get("centerId"));
+			System.out.println("\n \n Row Data = "+rowData+"\n \n");
 			AdminUtil.createUpdateStudent(rowData, delegator);
 			rowData.clear();
 		}
@@ -276,7 +301,11 @@ public class ExcelUtil {
 		Object cellVal = null;
 		switch (cell.getCellType()) {
 		case Cell.CELL_TYPE_NUMERIC:
-			cellVal = cell.getNumericCellValue();
+			if(DateUtil.isCellDateFormatted(cell)) {
+				cellVal = cell.getDateCellValue();
+			} else {
+				cellVal = cell.getNumericCellValue();
+			}
 			break;
 		case Cell.CELL_TYPE_STRING:
 			cellVal = UtilValidate.isNotEmpty(cell.getStringCellValue())?cell.getStringCellValue().trim():null;
@@ -348,6 +377,18 @@ public class ExcelUtil {
 				break;
 			}*/
 		}
+	}
+	
+	public static boolean isCellEmpty(final Cell cellVal) {
+	    if (cellVal == null || cellVal.getCellType() == Cell.CELL_TYPE_BLANK) {
+	        return true;
+	    }
+
+	    if (cellVal.getCellType() == Cell.CELL_TYPE_STRING && cellVal.getStringCellValue().isEmpty()) {
+	        return true;
+	    }
+
+	    return false;
 	}
 
 }

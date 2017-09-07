@@ -22,6 +22,19 @@
     <SecurityGroupPermission groupId="ADMIN" permissionId="ADMIN_VIEW"/>
     <SecurityGroupPermission groupId="ADMIN" permissionId="ADMIN_ADMIN"/>
     
+    <SecurityGroup groupId="CENTERADMIN" description="School Center admin group, has all *_ADMIN permission at Center level"/>
+    <SecurityPermission description="View operations in the TrueInsight Component." permissionId="CENTERADMIN_VIEW"/>
+    <SecurityPermission description="Create operations in the TrueInsight Component." permissionId="CENTERADMIN_CREATE"/>
+    <SecurityPermission description="Update operations in the TrueInsight Component." permissionId="CENTERADMIN_UPDATE"/>
+    <SecurityPermission description="Delete operations in the TrueInsight Component." permissionId="CENTERADMIN_DELETE"/>
+    <SecurityPermission description="ALL operations in the TrueInsight Component." permissionId="CENTERADMIN_ADMIN"/>
+    <SecurityGroupPermission groupId="CENTERADMIN" permissionId="CENTERADMIN_ADMIN"/>
+    <SecurityGroupPermission groupId="CENTERADMIN" permissionId="CENTERADMIN_CREATE"/>
+    <SecurityGroupPermission groupId="CENTERADMIN" permissionId="CENTERADMIN_DELETE"/>
+    <SecurityGroupPermission groupId="CENTERADMIN" permissionId="CENTERADMIN_UPDATE"/>
+    <SecurityGroupPermission groupId="CENTERADMIN" permissionId="CENTERADMIN_VIEW"/>
+    <SecurityGroupPermission groupId="CENTERADMIN" permissionId="CENTERADMIN_ADMIN"/>
+    
     
     
 </entity-engine-xml>

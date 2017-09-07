@@ -104,7 +104,7 @@ public class InitSetting implements Accessor {
 						List<GenericValue> gvLst3 = delegator.findList("PartyRelationship", entityCondition, null, UtilMisc.toList("createdStamp ASC"), readonly, true);
 						if(UtilValidate.isNotEmpty(gvLst3)){
 							for(GenericValue gVal3 : gvLst3){
-								childern1.add(UtilMisc.toMap("label", gVal3.getString("relationshipName")+" - [Teacher]"));
+								childern1.add(UtilMisc.toMap("label", gVal3.getString("relationshipName")+" - [Teacher]", "id", gVal3.getString("partyIdTo")));
 							}
 						}
 					}

@@ -365,13 +365,20 @@ public class AdminUtil {
 			paramMap.put("studentId", partyId);
 			paramMap.put("partyId", partyId);
 			String password = "123456";
-			String name = paramMap.get("firstName")+" "+paramMap.get("lastName");
+			String name = null;
+			if(UtilValidate.isNotEmpty(paramMap.get("firstName"))) {
+				name = paramMap.get("firstName").toString();
+			}
+			if(UtilValidate.isNotEmpty(paramMap.get("lastName"))) {
+				name = name +" "+paramMap.get("lastName");
+			}
+			name = name.trim();
 			paramMap.put("name", name);
 			paramMap.put("currentPassword", password);
 			String gender = ((String)paramMap.get("gender")).equalsIgnoreCase("Male")?"M":"F";
 			List<GenericValue> toBeStored = new LinkedList<GenericValue>();
 			toBeStored.add(delegator.makeValue("Party", UtilMisc.toMap("partyId", partyId, "description", name, "partyTypeId", "PERSON", "createdDate", UtilDateTime.nowTimestamp(),"orgId", paramMap.get("orgId"))));
-			toBeStored.add(delegator.makeValue("Person", UtilMisc.toMap("partyId", partyId, "firstName", paramMap.get("firstName"),"lastName", paramMap.get("lastName"), "gender", gender, "fatherMobelNo", paramMap.get("fatherMobelNo"), "motherMobilNo", paramMap.get("motherMobilNo"))));
+			toBeStored.add(delegator.makeValue("Person", UtilMisc.toMap("partyId", partyId, "firstName", paramMap.get("firstName"),"lastName", paramMap.get("lastName"), "gender", gender, "fatherMobelNo", paramMap.get("fatherMobelNo"), "motherMobilNo", paramMap.get("motherMobilNo"), "birthDate", paramMap.get("dateOfBirth"), "fatherName", paramMap.get("fatherName"), "fatherEmailId", paramMap.get("fatherEmailId"), "motherName", paramMap.get("motherName"), "motherEmailId", paramMap.get("motherEmailId"))));
 			toBeStored.add(delegator.makeValue("PartyRole", UtilMisc.toMap("partyId", partyId, "roleTypeId", "STUDENT")));
 			paramMap.put("groupId", "PARENT");
 			if(UtilValidate.isNotEmpty(paramMap.get("fatherMobelNo"))){
@@ -423,7 +430,14 @@ public class AdminUtil {
 			String gender = ((String)paramMap.get("gender")).equalsIgnoreCase("Male")?"M":"F";
 			List<GenericValue> toBeStored = new LinkedList<GenericValue>();
 			String partyId = delegator.getNextSeqId("Party");
-			String name = paramMap.get("firstName")+" "+paramMap.get("lastName");
+			String name = null;
+			if(UtilValidate.isNotEmpty(paramMap.get("firstName"))) {
+				name = paramMap.get("firstName").toString();
+			}
+			if(UtilValidate.isNotEmpty(paramMap.get("lastName"))) {
+				name = name +" "+paramMap.get("lastName");
+			}
+			name = name.trim();
 			paramMap.put("partyId", partyId);
 			paramMap.put("name", name);
 			String password = "123456";
@@ -685,5 +699,15 @@ public class AdminUtil {
 		}
 		
 		return parentMultipleChildsList;
+	}
+	
+	public static String createTestUser(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			GenericValue user = createUserLogin((Delegator) request.getAttribute("delegator"), UtilMisc.toMap("fatherMobelNo", "edbtmcenter", "currentPassword", "123456", "partyId", "11700"));
+			user.create();
+		} catch (GenericEntityException e) {
+			e.printStackTrace();
+		}
+		return "success";
 	}
 }

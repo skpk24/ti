@@ -212,4 +212,23 @@
         </section>
     </screen>
     
+    <screen name="createUserCenter">
+        <section>
+            <actions>
+                <set field="headerItem" value="school"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="AdminCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    	<platform-specific>
+                    		<html>
+                    			<html-template location="component://trueinsight/webapp/admin/body/school/createUserCenter.ftl"/>
+                    		</html>
+                    	</platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
 </screens>

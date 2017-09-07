@@ -138,6 +138,11 @@
 		<security https="true" auth="true" />
 		<response name="success" type="view" value="questionbank"/>
 	</request-map>
+	
+	<request-map uri="createUserCenter">
+		<security https="true" auth="true" />
+		<response name="success" type="view" value="createUserCenter"/>
+	</request-map>
     
     
     <!-- View Mappings -->
@@ -155,5 +160,7 @@
     <view-map name="uploadTeachers" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#uploadTeachers"/>
     
     <view-map name="questionbank" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#questionbank"/>
+    
+    <view-map name="createUserCenter" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#createUserCenter"/>
     
 </site-conf>

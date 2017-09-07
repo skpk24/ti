@@ -17,6 +17,10 @@
     	<field name="fatherMobelNo" type="short-varchar"/>
     	<field name="motherMobilNo" type="short-varchar"/>
     	<field name="email" type="short-varchar"/>
+    	<field name="fatherName" type="name"/>
+    	<field name="fatherEmailId" type="short-varchar"/>
+    	<field name="motherName" type="name"/>
+    	<field name="motherEmailId" type="short-varchar"/>
     </extend-entity>
     
     <entity entity-name="PartySurvey" package-name="org.ofbiz.party">
