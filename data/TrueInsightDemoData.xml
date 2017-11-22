@@ -21,4 +21,8 @@
     
     <SecurityGroupPermission groupId="TEACHER" permissionId="TI_TEACHER"/>
     <SecurityGroupPermission groupId="PARENT" permissionId="TI_PARENT"/>
+    
+    <!-- Survey types -->
+    <SurveyApplType surveyApplTypeId="DEVELOPMENTAL_ASSMT" description="Developmental Milestones"/>
+    <SurveyApplType surveyApplTypeId="ACADEMIC_ASSMT" description="Academic Assessment"/>
 </entity-engine-xml>

@@ -155,9 +155,9 @@
     </script>
 	</#if>
 	<#if parameters.thisRequestUri?has_content && parameters.thisRequestUri == "categories.html" >
-	<script>
+	<script type="text/javascript">
 	$(document).ready(function(e){
-		$(".category-items").click(function(){
+		$(".category-name").click(function(){
             if($(this).parent("div").find(".checkCat").length == 0) {
 				$(this).closest("div").prepend("<img src='/static/img/tick.png' class='checkCat'>");
 				$(this).next().prop('checked', true);
@@ -166,6 +166,14 @@
 				$(this).parent("div").find(".checkCat").remove();
 			}
         });
+        
+        $(".category-number").click(function(){
+			 if($(this).parent("div").find(".category-items").length == 0) {
+			 	$('#alertModalTitle').html($(this).closest("div").find(".category-name").html());
+			 	$('#alertModalContent').html($(this).closest("div").find(".category-name").html());
+			 }
+			$('#alertModalCF').modal();
+		});
 	});
 	</script>
 	</#if>

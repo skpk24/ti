@@ -15,5 +15,11 @@ if(request.getParameter("id")){
 	qOpts = delegator.findList("SurveyQuestionOption", EntityCondition.makeCondition("surveyQuestionId", EntityOperator.IN,questionIds), null, UtilMisc.toList("surveyOptionSeqId ASC"), null, true)
 	context.qAppls=qAppls;
 	context.qOpts=qOpts;
+	
+	party = delegator.findOne("Party", UtilMisc.toMap("partyId",ids[3]), true);
+	if(party){
+		session.setAttribute("student", party.getString("description"));
+		session.setAttribute("studentId", ids[3]);
+	}
 }
 

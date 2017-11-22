@@ -5,21 +5,22 @@
             <li class="sidebar-brand">
                 <a href="#top" onclick="$('#menu-close').click();"></a>
             </li>
+            <#if userLogin?has_content>
             <li>
-                <#if userLogin?has_content>
 	            <a href="#" class="mi-insight"><span class="welcome">Welcome</span>
 	            <span style="text-transform:none"><#if party?has_content>${party.description}</#if></span></a>
-			    </#if>
             </li>
             <li>
-                <a href="about-us.html" class="mi-about">About Us</a>
+	            <a href="<@ofbizUrl>myaccount.html</@ofbizUrl>" class="mi-register">My Account</a>
             </li>
-            <li>
-                <a href="support.html" class="mi-support">Support</a>
-            </li>
+            </#if>
+            
             <#if security.hasEntityPermission("TI", "_TEACHER", session)>
             <li>
-                <a href="grades.html" class="mi-support">Start</a>
+                <a href="grades.html?type=A" class="mi-support" style="text-transform:none">Developmental Milstone</a>
+            </li>
+            <li>
+                <a href="grades.html?type=B" class="mi-support" style="text-transform:none">Academic Assessment</a>
             </li>
             <#else>
             <li>
@@ -44,6 +45,22 @@
             	</#if>
             </li>
             </#if>
+            <li>
+                <a href="about-us.html" class="mi-about">Glossory</a>
+            </li>
+            <!--li>
+                <a href="about-us.html" class="mi-about">About Us</a>
+            </li-->
+            <li>
+                <a href="support.html" class="mi-support">Support</a>
+            </li>
+            <li>
+                <a href="support.html" class="mi-support">FAQ</a>
+            </li>
+            <li>
+                <a href="support.html" class="mi-support">How it works</a>
+            </li>
+            
             <#--li>
                 <a href="#" class="mi-login" data-toggle="modal" data-target="#myModal">Login</a>
             </li>

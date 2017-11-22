@@ -3,10 +3,13 @@
     <#include "component://trueinsight/webapp/trueinsight/includes/left.ftl"/>
     <#if userLogin?has_content>
     <div class="right_btn_logout">
-       <div class="img-circle img-responsive img-rounded user-img right_btn_hide"> </div>
+       <div class="img-circle img-responsive img-rounded user-img right_btn_hide"></div>
         <div class="user-log right_btn_hide">
             <span class="welcome">Welcome</span><br/>
             <span class=""><#if party?has_content>${party.description}</#if></span>
+        </div>
+        <div class="user-log right_btn_hide">
+        <a href="<@ofbizUrl>myaccount.html</@ofbizUrl>" class="">My Account</a>
         </div>
         <a href="<@ofbizUrl>logout</@ofbizUrl>" class="btn btn-info glyphicon glyphicon-log-out"></a>
     </div>

@@ -24,15 +24,16 @@
     </extend-entity>
     
     <entity entity-name="PartySurvey" package-name="org.ofbiz.party">
-    	<field name="partyId" type="id-ne"></field>
-        <field name="surveyId" type="id-ne"></field>
-        <field name="fromDate" type="date-time"></field>
-        <field name="thruDate" type="date-time"></field>
-        <field name="comments" type="comment"></field>
-        <field name="sequenceNum" type="numeric"></field>
+    	<field name="partyId" type="id-ne"/>
+        <field name="surveyId" type="id-ne"/>
+        <field name="surveyApplTypeId" type="id-ne"/>
+        <field name="fromDate" type="date-time"/>
+        <field name="thruDate" type="date-time"/>
+        <field name="comments" type="comment"/>
+        <field name="sequenceNum" type="numeric"/>
         <prim-key field="partyId"/>
         <prim-key field="surveyId"/>
-        <prim-key field="fromDate"/>
+        <prim-key field="surveyApplTypeId"/>
     </entity>
     
     <extend-entity entity-name="SurveyQuestionCategory">

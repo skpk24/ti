@@ -2,21 +2,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-left">
-                  
-                
                 ${screens.render("component://trueinsight/widget/CommonScreens.xml#breadcrumb")}
-
                     <div class="row">
-                    <form action="<@ofbizUrl>students.html</@ofbizUrl>" name="categories" method="POST" id="categoriesForm">
+                    <form action="<@ofbizUrl>students.html</@ofbizUrl>" name="categories" method="get" id="categoriesForm">
                     	<#if surveyCategories?has_content>
                     	<#list surveyCategories as cat>
                         <div class="form-group">	
                         	<div class="col-md-12">
-                                <div class="category-items txt-check">${cat.description?if_exists}</div>
-                                <input type="checkbox" name="id" id="categories" value="${cat.surveyQuestionCategoryId+","+request.getParameter("id")+","+surveyId}" class="hidden" autocomplete="off">
+                                <div class="category-items txt-check">
+                                	<span class="category-name">${cat.description?if_exists}</span>
+                                	<input type="checkbox" name="id" id="categories" value="${cat.surveyQuestionCategoryId+","+request.getParameter("id")+","+surveyId}" class="hidden" autocomplete="off">
+                                    <span class="category-number">?</span>
+                                </div>
                             </div>
                         </div>
                         </#list>
+                        <#else>
+                      	<div class="form-group">	
+                        	<div class="col-md-12">
+                                <div class="">
+                        			Comming Soon ...
+                        		</div>
+                        	</div>
+                        </div>
                         </#if>
                         
                         
@@ -35,3 +43,24 @@
             <!-- /.row -->
         </div>
     </section>
+    
+    
+    <!-- Modal -->
+		  <div class="modal fade" id="alertModalCF" style="top:30%;">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title" id="alertModalTitle"></h4>
+		        </div>
+		        <div class="modal-body"  style="text-align: justify;" id="alertModalContent">
+		          <p>lore lo posim  lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim 
+					 </p>
+		        </div>
+		      </div>
+		      
+		    </div>
+		  </div>
+		  <!-- end Modal -->

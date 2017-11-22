@@ -48,6 +48,33 @@
         </section>
     </screen>
     
+    <screen name="myaccount">
+        <section>
+            <actions>
+                <set field="headerItem" value="myaccount"/><!-- this highlights the selected menu-item with name "main" -->
+                <script location="component://trueinsight/webapp/trueinsight/WEB-INF/actions/login/myaccount.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="TrueInsightCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    <section>
+                    	<condition>
+							<if-has-permission permission="TI" action="_TEACHER" />
+						</condition>
+						<widgets>
+							<platform-specific>
+	                    		<html>
+	                    			<html-template location="component://trueinsight/webapp/trueinsight/inner/myaccount.ftl"/>
+	                    		</html>
+	                    	</platform-specific>
+						</widgets>
+                    </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
     <screen name="categories">
         <section>
             <actions>

@@ -110,6 +110,10 @@
     	<response name="success" type="view" value="privacy-refund-policy"/>
     </request-map>
     
+    <request-map uri="myaccount.html">
+    	<security https="true" auth="true"/>
+    	<response name="success" type="view" value="myaccount"/>
+    </request-map>
     
     <!-- View Mappings -->
     <view-map name="aboutus" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#aboutus"/>
@@ -119,7 +123,6 @@
     <view-map name="terms-conditions" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#terms-conditions"/>
     <view-map name="privacy-refund-policy" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#privacy-refund-policy"/>
     
-    
     <view-map name="main" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#main"/>
     <view-map name="login" type="screen" page="component://trueinsight/widget/CommonScreens.xml#login"/>
     <view-map name="grades" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#grades"/>
@@ -128,4 +131,5 @@
     <view-map name="questions" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#questions"/>
     <view-map name="report" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#report"/>
     <view-map name="report.pdf" type="screenfop" page="component://trueinsight/widget/TrueInsightScreens.xml#report.pdf" content-type="application/pdf" encoding="none"/>
+    <view-map name="myaccount" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#myaccount"/>
 </site-conf>
