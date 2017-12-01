@@ -4,7 +4,7 @@
                 <div class="col-lg-10 col-lg-offset-1 text-left">
                 ${screens.render("component://trueinsight/widget/CommonScreens.xml#breadcrumb")}
                     <div class="row">
-                    <form action="<@ofbizUrl>students.html</@ofbizUrl>" name="categories" method="get" id="categoriesForm">
+                    <form action="<@ofbizUrl>students.html</@ofbizUrl>" name="categories" method="POST" id="categoriesForm">
                     	<#if surveyCategories?has_content>
                     	<#list surveyCategories as cat>
                         <div class="form-group">	

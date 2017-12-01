@@ -2,12 +2,9 @@
 import org.ofbiz.base.util.*;
 
 id = request.getParameter("id");
-print("\n\n id getParameter = "+id+"\n\n");
 if(!id){ id = session.getAttribute("id");}
-print("\n\n id = "+id+"\n\n");
 stuents = new ArrayList();
 if(id){
-	print("\n\n id == "+id+"\n\n");
     String[] ids = null;
     if(id.indexOf(",") != -1){
     	ids = id.split(","); 
@@ -43,6 +40,6 @@ if(id){
 	surveyCat = delegator.findOne("SurveyQuestionCategory", UtilMisc.toMap("surveyQuestionCategoryId",context.catId), true);
 	session.setAttribute("category", surveyCat.getString("description"));
 	session.setAttribute("categoryId", context.catId);
-	print(" context.catId == "+context.catId+"\n\n")
+	//print(" context.catId == "+context.catId+"\n\n")
 }
 

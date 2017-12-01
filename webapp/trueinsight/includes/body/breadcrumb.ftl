@@ -26,7 +26,8 @@
 <div class="row">
 <div class="search-box">
     <div class="input-group stylish-input-group">
-        <input type="text" class="form-control"  placeholder="Search" >
+        <!--input type="search" class="form-control"  placeholder="Search" -->
+        <input type="search" id="exampleSearch" class="global_filter form-control" placeholder="Search .." aria-controls="example">
         <span class="input-group-addon">
             <button type="submit">
                 <span class="glyphicon glyphicon-search"></span>

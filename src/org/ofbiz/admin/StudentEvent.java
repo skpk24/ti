@@ -83,23 +83,23 @@ public class StudentEvent {
 		List stuents = new ArrayList();
 		try{
 		    List<GenericValue> partyRelationship = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", ids[1], "roleTypeIdTo", "SECTION"), null, true);
-		    Debug.log("\n\n partyRelationship == "+partyRelationship+"\n\n");
-		    Debug.log("\n\n 11  stuents == "+stuents.size()+"\n\n");
+//		    Debug.log("\n\n partyRelationship == "+partyRelationship+"\n\n");
+//		    Debug.log("\n\n 11  stuents == "+stuents.size()+"\n\n");
 		    if(UtilValidate.isNotEmpty(partyRelationship)){
-		    	Debug.log("\n\n 11  partyIdTo == "+partyRelationship.get(0).getString("partyIdTo")+"\n\n");
-		    	stuents = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", partyRelationship.get(0).getString("partyIdTo"),"roleTypeIdTo", "STUDENT"), null, true);
-		    	//Debug.log("\n\n 11  partyIdTo == "+stuents+"\n\n");
+		    	for(GenericValue relations : partyRelationship){
+		    		stuents.addAll(delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", relations.getString("partyIdTo"),"roleTypeIdTo", "STUDENT"), null, true));
+		    	}
 		    }
-		    Debug.log("\n\n stuents == "+stuents.size()+"\n\n");
+//		    Debug.log("\n\n stuents == "+stuents.size()+"\n\n");
 			//Debug.log("\n\n userLogin == "+partyRelationship+"\n\n");
-			List<GenericValue> centers = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", ids[1],"roleTypeIdFrom", "CENTER"), null, true);
-			Debug.log("\n\n centers == "+centers.size()+"\n\n");
-			for(GenericValue center : centers){
-				stuents.addAll(delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", center.getString("partyIdFrom"),"roleTypeIdTo", "STUDENT"), null, true));
-			}
+			//List<GenericValue> centers = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", ids[1],"roleTypeIdFrom", "CENTER"), null, true);
+			//Debug.log("\n\n centers == "+centers.size()+"\n\n");
+			//for(GenericValue center : centers){
+			//	stuents.addAll(delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", center.getString("partyIdFrom"),"roleTypeIdTo", "STUDENT"), null, true));
+			//}
 			
 			//sections = delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdTo", ids[1],"roleTypeIdFrom", "CENTER"), null, true);
-			//Debug.log("\n\n 111111111111 stuents == "+stuents.size()+"\n\n");
+			Debug.log("\n\n 111111111111 stuents == "+stuents.size()+"\n\n");
 		}catch(Exception e){
 			e.printStackTrace();
 		}

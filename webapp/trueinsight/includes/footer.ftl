@@ -52,9 +52,12 @@
     
     <!-- bxSlider Javascript file -->
 	<script src="${request.getContextPath()}/static/js/jquery.bxslider.min.js"></script>
+	
+	 <!-- jQuery data table Javascript file -->
+	<script src="${request.getContextPath()}/static/js/jquery.dataTables.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script>
+    <script type="text/javascript">
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();
@@ -129,7 +132,7 @@
     
     <#if parameters.thisRequestUri?has_content && (parameters.thisRequestUri == "main" 
     || parameters.thisRequestUri == "index.html" || parameters.thisRequestUri == "login") >
-    <script>
+    <script type="text/javascript">
 	    $(document).ready(function(){
 	  		$('.bxslider').bxSlider({
 	  		  //mode: 'vertical',
@@ -140,7 +143,7 @@
 	</script>
 	</#if>
 	<#if parameters.thisRequestUri?has_content && parameters.thisRequestUri == "grades.html" >
-	<script>
+	<script type="text/javascript">
     $(document).ready(function(e){
 		$(".img-check").click(function(){
             if($(this).parent("label").find(".check").length == 0) {
@@ -179,6 +182,21 @@
 	</#if>
 	<#if parameters.thisRequestUri?has_content && parameters.thisRequestUri == "students.html" >
 	<script>
+	
+	$(document).ready(function() {
+	   oTable = $('#example').DataTable({
+	    	 "paging":   false,
+        	 "ordering": false,
+             "info":     false,
+             "dom":''
+	    });
+	    
+	    $('#exampleSearch').keyup(function(){
+		      oTable.search($(this).val()).draw() ;
+		})
+	    
+	});
+	
 	$(document).ready(function(e){
 		$(".student-items").click(function(){
             if($(this).parent("div").find(".checkstudent").length == 0) {
@@ -202,6 +220,19 @@
     document.getElementsByTagName("head")[0].appendChild(mf);
   })();
 </script>
-</body>
 
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5a1fe543198bd56b8c03e3b5/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
 </html>
