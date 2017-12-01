@@ -13,6 +13,9 @@
                                 	<span class="category-name">${cat.description?if_exists}</span>
                                 	<input type="checkbox" name="id" id="categories" value="${cat.surveyQuestionCategoryId+","+request.getParameter("id")+","+surveyId}" class="hidden" autocomplete="off">
                                     <span class="category-number">?</span>
+                                    <span class="category-description" style="display:none">
+                                    	${cat.longDescription?if_exists}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +56,7 @@
 		      <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h4 class="modal-title" id="alertModalTitle"></h4>
+		          <h3 class="modal-title" id="alertModalTitle"></h3>
 		        </div>
 		        <div class="modal-body"  style="text-align: justify;" id="alertModalContent">
 		          <p>lore lo posim  lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim lore lo posim 

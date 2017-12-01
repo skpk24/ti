@@ -38,6 +38,7 @@
     
     <extend-entity entity-name="SurveyQuestionCategory">
     	<field name="surveyId" type="id-ne"/>
+    	<field name="longDescription" type="url"/>
     	<relation type="one" fk-name="SRVYQUECAT_SRVY" rel-entity-name="Survey">
             <key-map field-name="surveyId"/>
         </relation>
@@ -55,6 +56,4 @@
     		<key-map field-name="userLoginId"/>
     	</relation>
     </entity>
-    
-
 </entitymodel>

@@ -173,7 +173,7 @@
         $(".category-number").click(function(){
 			 if($(this).parent("div").find(".category-items").length == 0) {
 			 	$('#alertModalTitle').html($(this).closest("div").find(".category-name").html());
-			 	$('#alertModalContent').html($(this).closest("div").find(".category-name").html());
+			 	$('#alertModalContent').html($(this).closest("div").find(".category-description").html());
 			 }
 			$('#alertModalCF').modal();
 		});
