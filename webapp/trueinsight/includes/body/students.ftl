@@ -31,13 +31,13 @@
             				<tr>
             					<td>
 			                        <div class="form-group">	
-			                        	<div class="col-md-4">
+			                        	<!--div class="col-md-4"-->
 			                                <div class="student-items txt-check">
 			                                    <span class="student-name">${studs.relationshipName?if_exists}</span>
 			                                    <span class="student-number">${studs.comments?default("0")}</span>
 			                                </div>
 			                                <input type="checkbox" name="id" id="students" value="${catId+","+gradeId+","+surveyId+","+studs.partyIdTo}" class="hidden" autocomplete="off">
-			                            </div>
+			                            <!--/div-->
 			                        </div>
 			                     </td>
 			                  </tr>
