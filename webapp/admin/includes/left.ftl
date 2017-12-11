@@ -26,10 +26,10 @@
                     </li>
                     <#-- <li>
                         <a href="<@ofbizUrl>content</@ofbizUrl>"><i class="fa fa-user fa-fw"></i> Content </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="<@ofbizUrl>newSchool</@ofbizUrl>"><i class="fa fa-user fa-fw"></i> New School </a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
