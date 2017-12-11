@@ -21,6 +21,15 @@
                     <li>
                         <a href="<@ofbizUrl>questionbank</@ofbizUrl>?partyId=${userLogin.externalAuthId?if_exists}"><i class="fa fa-user fa-fw"></i> Question Bank </a>
                     </li>
+                    <li>
+                        <a href="<@ofbizUrl>events?period=month</@ofbizUrl>"><i class="fa fa-users fa-fw"></i> Events </a>
+                    </li>
+                    <#-- <li>
+                        <a href="<@ofbizUrl>content</@ofbizUrl>"><i class="fa fa-user fa-fw"></i> Content </a>
+                    </li>
+                    <li>
+                        <a href="<@ofbizUrl>newSchool</@ofbizUrl>"><i class="fa fa-user fa-fw"></i> New School </a>
+                    </li> -->
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

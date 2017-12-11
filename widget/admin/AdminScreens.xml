@@ -231,4 +231,93 @@
         </section>
     </screen>
     
+    <screen name="events">
+		<section>
+			<actions>
+				<set field="headerItem" value="main" /><!-- this highlights the selected 
+					menu-item with name "main" -->
+				<set field="pageType" value="page" />
+				<script location="component://trueinsight/webapp/admin/WEB-INF/actions/events/CalEvents.groovy" />
+			</actions>
+			<widgets>
+				<decorator-screen name="AdminCommonDecorator"
+					location="${parameters.mainDecoratorLocation}">
+					<decorator-section name="body">
+						<platform-specific>
+							<html>
+								<html-template
+									location="component://trueinsight/webapp/admin/body/events/events.ftl" />
+							</html>
+						</platform-specific>
+					</decorator-section>
+				</decorator-screen>
+			</widgets>
+		</section>
+	</screen>
+	
+	<screen name="createCalEvent">
+		<section>
+			<actions>
+				<set field="headerItem" value="main" /><!-- this highlights the selected 
+					menu-item with name "main" -->
+				<set field="pageType" value="page" />
+				<script location="component://trueinsight/webapp/admin/WEB-INF/actions/events/CalEvents.groovy" />
+			</actions>
+			<widgets>
+				<decorator-screen name="AdminCommonDecorator"
+					location="${parameters.mainDecoratorLocation}">
+					<decorator-section name="body">
+						<platform-specific>
+							<html>
+								<html-template
+									location="component://trueinsight/webapp/admin/body/events/createCalEvent.ftl" />
+							</html>
+						</platform-specific>
+					</decorator-section>
+				</decorator-screen>
+			</widgets>
+		</section>
+	</screen>
+	
+	<screen name="editCalEvent">
+		<section>
+			<actions>
+				<set field="headerItem" value="main" /><!-- this highlights the selected 
+					menu-item with name "main" -->
+				<set field="pageType" value="page" />
+				<script location="component://trueinsight/webapp/admin/WEB-INF/actions/events/CalEvents.groovy" />
+			</actions>
+			<widgets>
+				<decorator-screen name="AdminCommonDecorator"
+					location="${parameters.mainDecoratorLocation}">
+					<decorator-section name="body">
+						<platform-specific>
+							<html>
+								<html-template
+									location="component://trueinsight/webapp/admin/body/events/editCalEvent.ftl" />
+							</html>
+						</platform-specific>
+					</decorator-section>
+				</decorator-screen>
+			</widgets>
+		</section>
+	</screen>
+	
+	<screen name="newSchool">
+        <section>
+            <actions>
+            	<set field="headerItem" value="newSchool" />
+            </actions>
+            <widgets>
+                <decorator-screen name="AdminCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+							<html><html-template location="component://trueinsight/webapp/admin/body/school/newSchool.ftl"/></html>
+						</platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
 </screens>

@@ -143,6 +143,54 @@
 		<security https="true" auth="true" />
 		<response name="success" type="view" value="createUserCenter"/>
 	</request-map>
+	
+	<!-- Calendar Events Start -->
+	
+	<request-map uri="events">
+		<security https="true" auth="true"/>
+		<response name="success" type="view" value="events"/>
+	</request-map>
+	
+	<request-map uri="createCalEvent">
+		<security https="true" auth="true"/>
+		<response name="success" type="view" value="createCalEvent"/>
+	</request-map>
+	
+	<request-map uri="createEvent">
+		<security https="true" auth="false"/>
+		<event type="java" path="org.ofbiz.util.AdminEventUtil" invoke="createCalEvent"/>
+		<response name="success" type="request-redirect" value="events">
+			<redirect-parameter name="period" value="month"/>
+		</response>
+		<response name="error" type="view" value="createCalEvent"/>
+	</request-map>
+	
+	<request-map uri="updateCalEvent">
+		<security https="true" auth="false"/>
+		<event type="java" path="org.ofbiz.util.AdminEventUtil" invoke="updateCalEvent"/>
+		<response name="success" type="request-redirect" value="events">
+			<redirect-parameter name="period" value="month"/>
+		</response>
+		<response name="error" type="view" value="editEvent"/>
+	</request-map>
+	
+	<request-map uri="editEvent">
+		<security https="true" auth="true"/>
+		<response name="success" type="view" value="editEvent"/>
+    </request-map>
+	
+	<!-- Calendar Events End -->
+	
+	<request-map uri="newSchool">
+        <security auth="true" https="true"/>
+        <event type="java" path="org.ofbiz.admin.SchoolOrganization" invoke="getOrganizationList"/>
+        <response name="success" type="view" value="newSchool"/>
+    </request-map>
+    <request-map uri="createSchoolLogin">
+        <security auth="true" https="true"/>
+        <event type="java" path="org.ofbiz.admin.SchoolOrganization" invoke="createSchoolLogin"/>
+        <response name="success" type="request-redirect" value="newSchool"/>
+    </request-map>
     
     
     <!-- View Mappings -->
@@ -162,5 +210,11 @@
     <view-map name="questionbank" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#questionbank"/>
     
     <view-map name="createUserCenter" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#createUserCenter"/>
+    
+    <view-map name="events" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#events"/>
+    <view-map name="createCalEvent" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#createCalEvent"/>
+    <view-map name="editEvent" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#editCalEvent"/>
+    
+    <view-map name="newSchool" type="screen" page="component://trueinsight/widget/admin/AdminScreens.xml#newSchool"/>
     
 </site-conf>

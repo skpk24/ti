@@ -25,4 +25,10 @@
     <!-- Survey types -->
     <SurveyApplType surveyApplTypeId="DEVELOPMENTAL_ASSMT" description="Developmental Milestones"/>
     <SurveyApplType surveyApplTypeId="ACADEMIC_ASSMT" description="Academic Assessment"/>
+    
+    <ContentType contentTypeId="PLACEHOLDER" description="Place Holder"/>
+    <ContentType contentTypeId="WEB_SITE_PUB_PT" parentTypeId="PLACEHOLDER" hasTable="Y" description="Web Site Publish Point"/>
+    <Content contentId="TI_CONTENT" contentTypeId="WEB_SITE_PUB_PT" createdByUserLogin="trueinsight" createdDate="2017-10-10 19:03:00.0" createdStamp="2017-10-10 19:03:00.0" createdTxStamp="2017-10-10 19:02:59.0" lastModifiedByUserLogin="trueinsight" lastModifiedDate="2017-10-10 19:04:14.0" lastUpdatedStamp="2017-10-10 19:04:14.0" lastUpdatedTxStamp="2017-10-10 19:04:14.0" statusId="CTNT_PUBLISHED"/>
+	<Content contentId="TI_EVENT" contentTypeId="WEB_SITE_PUB_PT" createdByUserLogin="trueinsight" createdDate="2017-10-10 19:03:00.0" createdStamp="2017-10-10 19:03:00.0" createdTxStamp="2017-10-10 19:02:59.0" lastModifiedByUserLogin="trueinsight" lastModifiedDate="2017-10-10 19:04:14.0" lastUpdatedStamp="2017-10-10 19:04:14.0" lastUpdatedTxStamp="2017-10-10 19:04:14.0" statusId="CTNT_PUBLISHED"/>
+	<WorkEffortContentType createdStamp="2017-10-31 15:07:34.0" createdTxStamp="2017-10-31 15:07:34.0" description="TrueInsight Event Text" lastUpdatedStamp="2017-10-31 15:07:34.0" lastUpdatedTxStamp="2017-10-31 15:07:34.0" workEffortContentTypeId="TI_EVENT_TEXT"/>
 </entity-engine-xml>

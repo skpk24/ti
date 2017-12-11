@@ -36,6 +36,16 @@
 		  || parameters.thisRequestUri == "students")> 
 			<link href="${request.getContextPath()}/static/css/jqtree.css" rel="stylesheet">
 		</#if>
+		
+		<#if parameters.thisRequestUri?has_content && (parameters.thisRequestUri == "events")>
+		<!-- admin events css -->
+		<link href="/static/css/cal.css" rel="stylesheet" type="text/css">
+		</#if>
+		
+		<#if parameters.thisRequestUri?has_content &&(parameters.thisRequestUri == "createCalEvent" || parameters.thisRequestUri == "editEvent") >
+			<link href="${request.getContextPath()}/static/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
+		</#if>
+		
 		<!-- Custom CSS -->
 		<link href="${request.getContextPath()}/static/css/sb-admin-2.css" rel="stylesheet">
 		
