@@ -115,6 +115,11 @@
     	<response name="success" type="view" value="myaccount"/>
     </request-map>
     
+    <request-map uri="glossary.html">
+    	<security https="true" auth="false"/>
+    	<response name="success" type="view" value="glossary"/>
+    </request-map>
+    
     <!-- View Mappings -->
     <view-map name="aboutus" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#aboutus"/>
     <view-map name="contactus" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#contactus"/>
@@ -130,6 +135,7 @@
     <view-map name="students" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#students"/>
     <view-map name="questions" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#questions"/>
     <view-map name="report" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#report"/>
+    <view-map name="glossary" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#glossary"/>
     <view-map name="report.pdf" type="screenfop" page="component://trueinsight/widget/TrueInsightScreens.xml#report.pdf" content-type="application/pdf" encoding="none"/>
     <view-map name="myaccount" type="screen" page="component://trueinsight/widget/TrueInsightScreens.xml#myaccount"/>
 </site-conf>

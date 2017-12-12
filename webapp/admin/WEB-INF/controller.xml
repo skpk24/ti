@@ -109,7 +109,6 @@
 		<response name="error" type="view" value="uploadTeachers" />
 	</request-map>
 	
-	
 	<request-map uri="school">
     	<security https="true" auth="true"/>
     	<response name="success" type="view" value="school"/>

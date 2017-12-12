@@ -12,7 +12,7 @@
 	<meta name="description" content="TrueInsight">
 	<meta name="author" content="TrueInsight">
 	
-	<title><#if layoutSettings?has_content> ${layoutSettings.companyName?if_exists} </#if>: <#if (page.titleProperty)?has_content>${uiLabelMap[page.titleProperty]}<#else>${(page.title)!}</#if></title>
+	<title><#if layoutSettings?has_content> ${layoutSettings.companyName?if_exists} </#if>: <#if (page.titleProperty)?has_content>${uiLabelMap[page.titleProperty]}<#else>${(page.title)!}</#if> Our mission is to enhance the behaviour of students by creating a reinforced environment among peers, to foster the choicest behaviour and deliver the same to the society. </title>
 
 
 	<!-- bootstrap & fontawesome -->

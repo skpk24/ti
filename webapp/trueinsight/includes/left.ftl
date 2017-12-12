@@ -46,7 +46,7 @@
             </li>
             </#if>
             <li>
-                <a href="about-us.html" class="mi-about">Glossory</a>
+                <a href="glossary.html" class="mi-about">Glossory</a>
             </li>
             <!--li>
                 <a href="about-us.html" class="mi-about">About Us</a>
