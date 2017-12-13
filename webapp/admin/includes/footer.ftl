@@ -52,6 +52,33 @@
     </script>
 	</#if>
 	
+	<#if parameters.thisRequestUri?has_content && (parameters.thisRequestUri == "newSchool")> 
+		<script type="text/javascript">
+		    $(document).ready(function() {
+		    	$(".newSchoolDiv").show();
+		    	$(".newEventDiv").hide();
+		        $('input[type=radio][name=newSchoolEvent]').change(function() {
+		        	$(".newSchoolDiv").toggle();
+		    		$(".newEventDiv").toggle();
+		    		if(this.value == 'newSchool') {
+				    	$('.newSchoolDiv').find('input, textarea, button, select').attr('disabled', false);
+		    			$('.newEventDiv').find('input, textarea, button, select').attr('disabled', true);
+		    			//$('input[name=schoolId]').attr('required', true);
+		    		} else {
+		    			$('.newSchoolDiv').find('input, textarea, button, select').attr('disabled', true);
+		    			$('.newEventDiv').find('input, textarea, button, select').attr('disabled', false);
+		    			//$('input[name=schoolId]').attr('required', false);
+		    		}
+		        });
+		        $(".form-newSchoolEvent").submit(function(e) {
+		        	var newVal = $('input[name=newSchoolEvent]:not(:checked)').val();
+		        	$('.'+newVal+'Div').find('input, textarea, button, select').attr('disabled', true);
+			    	//e.preventDefault();
+		        });
+		    });
+		</script>
+	</#if>
+	
     <!-- Custom Theme JavaScript -->
     <script src="${request.getContextPath()}/static/js/sb-admin-2.js"></script>
     <script src="${request.getContextPath()}/static/js/jquery.validate.min.js"></script>

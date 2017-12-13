@@ -30,7 +30,7 @@
 							</div>
 							<div class="form-group">
 								<label for="description" class="col-form-label">Description</label>
-								<textarea name="textData" cols="80" rows="20" id="textData" class="form-control">${eleTxt.textData!}</textarea> 
+								<textarea name="textData" cols="80" rows="20" id="textData" class="form-control"><#if eleTxt?has_content>${eleTxt.textData!}</#if></textarea> 
 							</div>
 	
 							
